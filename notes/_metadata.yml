@@ -1,0 +1,33 @@
+# notes/ 아래 모든 노트에 적용되는 설정.
+
+# 댓글은 아직 꺼져 있다. 준비가 끝나면 이 줄을 지우고 아래 giscus 블록의
+# 주석을 풀면 노트마다 댓글난이 생긴다. 준비 전에 켜면 오류 상자가 뜬다.
+comments: false
+
+# 댓글은 GitHub Discussions 에 저장된다. 제3자 서비스에 글이 남지 않고,
+# 광고와 추적기가 붙지 않으며, 저장소를 옮기면 댓글도 함께 따라온다.
+#
+# 아래 세 가지는 모두 웹에서 해야 한다.
+#
+#   1. 저장소 Settings > General > Features > Discussions 체크
+#   2. https://github.com/apps/giscus 설치, 이 저장소에 권한 부여
+#   3. https://giscus.app 에 저장소 주소를 넣고 repo-id 와 category-id 확인
+#      카테고리는 Announcements 를 고른다. 그래야 아무나 새 토론을 열지 못하고,
+#      댓글은 노트마다 자동으로 생긴 토론에만 달린다.
+#
+# comments:
+#   giscus:
+#     repo: jesfcne/jesfcne.github.io
+#     repo-id: "giscus.app 이 알려준 값"
+#     category: Announcements
+#     category-id: "giscus.app 이 알려준 값"
+#     # 노트 주소로 토론을 짝짓는다. 제목을 고쳐도 댓글이 흩어지지 않는다.
+#     mapping: pathname
+#     reactions-enabled: true
+#     input-position: above
+#     loading: lazy
+#     language: ko
+#     # 사이트의 라이트/다크 토글을 따라간다.
+#     theme:
+#       light: light
+#       dark: dark_dimmed

@@ -60,6 +60,23 @@ python scripts/check_frontmatter.py
 주장이 뒤집혔을 때 노트를 지우지 않습니다. `retired` 로 바꾸고 본문에
 무엇이 왜 틀렸는지 덧붙입니다. 인사이트 표에서는 빠지지만 노트는 남습니다.
 
+## 댓글
+
+노트마다 댓글난을 둘 수 있습니다. GitHub Discussions 에 저장되므로 제3자
+서비스에 글이 남지 않습니다. 읽는 사람은 GitHub 계정이 필요합니다.
+
+설정은 `notes/_metadata.yml` 에 준비되어 있고, 아래 세 단계를 마친 뒤
+주석을 풀면 켜집니다.
+
+1. 저장소 **Settings → General → Features → Discussions** 체크
+2. [giscus 앱](https://github.com/apps/giscus) 설치 후 이 저장소에 권한 부여
+3. [giscus.app](https://giscus.app) 에서 `repo-id` 와 `category-id` 확인
+
+카테고리는 **Announcements** 를 씁니다. 아무나 새 토론을 열지 못하고,
+댓글은 노트마다 자동으로 생긴 토론에만 달립니다.
+
+목록 페이지(`notes/index.qmd`)는 `comments: false` 로 꺼 두었습니다.
+
 ## 배포
 
 CI에서 렌더링하지 않습니다. 로컬에서 렌더링한 결과를 커밋해 푸시합니다.
