@@ -55,9 +55,12 @@ format:
     code-summary: "코드 보기"
     code-tools: false
 
-# 노트 프론트매터의 status 를 본문 맨 위 배지로 보여준다.
+# 둘 다 status 가 있는 문서(=노트)에만 적용된다.
 filters:
+  # 프론트매터의 status 를 본문 맨 위 배지로 보여준다.
   - filters/status-badge.lua
+  # 노트 끝에 정정 제보 안내를 붙인다.
+  - filters/note-footer.lua
 
 execute:
   freeze: auto
