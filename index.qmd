@@ -12,12 +12,38 @@ listing:
 toc: false
 ---
 
+::: {.hero}
+
+::: {.hero-text}
 에어코리아, 기상청, 물환경 수질측정망, 해양환경측정망 같은 국내 공개 환경 데이터를
 직접 내려받아 분석하고, 그 과정에서 확인한 것을 노트로 남기는 곳입니다.
 질문 하나에 노트 한 편이 대응합니다.
 
 각 노트는 검증 가능한 주장 하나와, 그 주장이 틀렸다면 무엇이 관찰될지를 함께
 적습니다. 반증 조건이 없는 서술은 노트로 발행하지 않습니다.
+:::
+
+::: {.hero-art}
+```{=html}
+<svg class="cadence" viewBox="0 0 288 192" role="img" aria-labelledby="cadence-title" xmlns="http://www.w3.org/2000/svg">
+<title id="cadence-title">관측 주기가 다른 네 데이터 소스를 점의 밀도로 나타낸 그림. 위에서부터 시간별, 일별, 월별, 분기별.</title>
+<g fill="currentColor">
+<line x1="8" y1="30" x2="280" y2="30" stroke="currentColor" stroke-width="1" opacity="0.171"/>
+<g opacity="0.95"><circle cx="8.0" cy="30" r="3.0"/><circle cx="19.3" cy="30" r="3.0"/><circle cx="30.7" cy="30" r="3.0"/><circle cx="42.0" cy="30" r="3.0"/><circle cx="53.3" cy="30" r="3.0"/><circle cx="64.7" cy="30" r="3.0"/><circle cx="76.0" cy="30" r="3.0"/><circle cx="87.3" cy="30" r="3.0"/><circle cx="98.7" cy="30" r="3.0"/><circle cx="110.0" cy="30" r="3.0"/><circle cx="121.3" cy="30" r="3.0"/><circle cx="132.7" cy="30" r="3.0"/><circle cx="144.0" cy="30" r="3.0"/><circle cx="155.3" cy="30" r="3.0"/><circle cx="166.7" cy="30" r="3.0"/><circle cx="178.0" cy="30" r="3.0"/><circle cx="189.3" cy="30" r="3.0"/><circle cx="200.7" cy="30" r="3.0"/><circle cx="212.0" cy="30" r="3.0"/><circle cx="223.3" cy="30" r="3.0"/><circle cx="234.7" cy="30" r="3.0"/><circle cx="246.0" cy="30" r="3.0"/><circle cx="257.3" cy="30" r="3.0"/><circle cx="268.7" cy="30" r="3.0"/><circle cx="280.0" cy="30" r="3.0"/></g>
+<line x1="8" y1="74" x2="280" y2="74" stroke="currentColor" stroke-width="1" opacity="0.140"/>
+<g opacity="0.78"><circle cx="8.0" cy="74" r="3.4"/><circle cx="30.7" cy="74" r="3.4"/><circle cx="53.3" cy="74" r="3.4"/><circle cx="76.0" cy="74" r="3.4"/><circle cx="98.7" cy="74" r="3.4"/><circle cx="121.3" cy="74" r="3.4"/><circle cx="144.0" cy="74" r="3.4"/><circle cx="166.7" cy="74" r="3.4"/><circle cx="189.3" cy="74" r="3.4"/><circle cx="212.0" cy="74" r="3.4"/><circle cx="234.7" cy="74" r="3.4"/><circle cx="257.3" cy="74" r="3.4"/><circle cx="280.0" cy="74" r="3.4"/></g>
+<line x1="8" y1="118" x2="280" y2="118" stroke="currentColor" stroke-width="1" opacity="0.112"/>
+<g opacity="0.62"><circle cx="8.0" cy="118" r="3.8"/><circle cx="53.3" cy="118" r="3.8"/><circle cx="98.7" cy="118" r="3.8"/><circle cx="144.0" cy="118" r="3.8"/><circle cx="189.3" cy="118" r="3.8"/><circle cx="234.7" cy="118" r="3.8"/><circle cx="280.0" cy="118" r="3.8"/></g>
+<line x1="8" y1="162" x2="280" y2="162" stroke="currentColor" stroke-width="1" opacity="0.086"/>
+<g opacity="0.48"><circle cx="8.0" cy="162" r="4.2"/><circle cx="98.7" cy="162" r="4.2"/><circle cx="189.3" cy="162" r="4.2"/><circle cx="280.0" cy="162" r="4.2"/></g>
+</g>
+</svg>
+```
+
+[시간별 · 일별 · 월별 · 분기별]{.hero-caption}
+:::
+
+:::
 
 실시간 조회 서비스나 대시보드가 아닙니다. 지금 이 순간의 미세먼지 농도가 궁금하다면
 [에어코리아](https://www.airkorea.or.kr)가 맞는 곳입니다. 여기 있는 것은 이미 지나간
