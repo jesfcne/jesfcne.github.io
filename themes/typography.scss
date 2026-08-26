@@ -20,12 +20,14 @@ figcaption,
   overflow-wrap: break-word;
 }
 
-p,
-li {
+// main 안으로 한정한다. 범위를 두지 않으면 상단 메뉴와 목차의 li 까지 잡혀
+// 메뉴 항목이 제각각 밀려 내려간다. 목차 간격은 아래 doc-toc 규칙이 따로 준다.
+main p,
+main li {
   line-height: 1.8;
 }
 
-li + li {
+main li + li {
   margin-top: 0.35rem;
 }
 
