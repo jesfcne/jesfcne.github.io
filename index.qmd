@@ -7,7 +7,9 @@ listing:
   type: default
   max-items: 3
   sort: "date desc"
-  fields: [date, title, description]
+  fields: [date, title, reading-time, description]
+  field-display-names:
+    reading-time: "분량"
   date-format: "YYYY-MM-DD"
 toc: false
 ---

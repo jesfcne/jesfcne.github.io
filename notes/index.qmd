@@ -7,7 +7,10 @@ listing:
   sort: "date desc"
   categories: true
   feed: true
-  fields: [date, title, description, categories]
+  fields: [date, title, reading-time, description, categories, status]
+  field-display-names:
+    reading-time: "분량"
+    status: "상태"
   date-format: "YYYY-MM-DD"
   page-size: 24
 toc: false
@@ -17,3 +20,4 @@ toc: false
 
 각 노트가 어떤 주장을 담고 있는지만 빠르게 훑고 싶다면
 [인사이트](../claims.qmd) 쪽이 편합니다.
+새 노트를 챙겨 보시려면 [RSS로 구독](index.xml)할 수 있습니다.

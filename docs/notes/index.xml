@@ -9,6 +9,13 @@
 <link>https://jesfcne.github.io/notes/</link>
 <atom:link href="https://jesfcne.github.io/notes/index.xml" rel="self" type="application/rss+xml"/>
 <description>질문 하나에 노트 한 편</description>
+<image>
+<url>https://jesfcne.github.io/og-card.png</url>
+<title>환경 데이터 노트</title>
+<link>https://jesfcne.github.io/notes/</link>
+<height>76</height>
+<width>144</width>
+</image>
 <generator>quarto-1.10.18</generator>
 <lastBuildDate>Tue, 25 Aug 2026 15:00:00 GMT</lastBuildDate>
 <item>
@@ -20,6 +27,7 @@
 
 
 
+<div class="note-status status-seed"><span class="note-status-label">씨앗</span><span class="note-status-note">질문만 있고 자료를 아직 보지 않았습니다.</span></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -71,7 +79,7 @@
 
 </section>
 
- ]]></description>
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> 맨 위로</a> ]]></description>
   <category>대기질</category>
   <category>에어코리아</category>
   <category>방법론</category>

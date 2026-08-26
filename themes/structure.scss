@@ -123,6 +123,69 @@ figcaption,
   color: $accent !important;
 }
 
+// 노트 상태 배지. 초고를 확정된 주장으로 오해하지 않도록 본문 맨 위에 둔다.
+// 색은 팔레트와 무관한 의미색이라 라이트/다크 양쪽에서 읽히는 중간 톤을 쓴다.
+$status-colors: (
+  "seed": #a1a1aa,
+  "probing": #0ea5e9,
+  "draft": #f59e0b,
+  "published": #14b8a6,
+  "watching": #a78bfa,
+  "retired": #78716c,
+);
+
+.note-status {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 2rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid $border-color;
+  font-size: 0.85rem;
+}
+
+.note-status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: $muted-color;
+  align-self: center;
+  flex: none;
+}
+
+.note-status-label {
+  font-weight: 600;
+  color: $heading-color;
+}
+
+.note-status-note {
+  color: $muted-color;
+}
+
+@each $key, $color in $status-colors {
+  .note-status.status-#{$key} .note-status-dot {
+    background: $color;
+  }
+
+  .note-status.status-#{$key} .note-status-label {
+    color: $color;
+  }
+}
+
+// 목록 카드의 상태 항목
+.listing-status {
+  font-size: 0.78rem;
+  color: $muted-color;
+}
+
+// 목록 카드의 분량 항목
+.listing-reading-time {
+  font-size: 0.78rem;
+  color: $muted-color;
+  font-variant-numeric: tabular-nums;
+}
+
 // 랜딩 도입부. 글 옆에 도형을 두어 첫 화면이 문단만으로 채워지지 않게 한다.
 .hero {
   display: grid;
