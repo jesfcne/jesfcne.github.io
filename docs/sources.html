@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b473f41ac17c431aa7bf2d9eea71b663.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-f81b765b343ba891751a9f65d4c31954.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-b473f41ac17c431aa7bf2d9eea71b663.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-db442e8386837672d0195394839f20a8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-cbd82f3fb5a35288aac7bbea947be81d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-db442e8386837672d0195394839f20a8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -307,7 +307,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#갱신-주기-차이가-만드는-문제" id="toc-갱신-주기-차이가-만드는-문제" class="nav-link active" data-scroll-target="#갱신-주기-차이가-만드는-문제">갱신 주기 차이가 만드는 문제</a></li>
+  <li><a href="#다루는-데이터-소스" id="toc-다루는-데이터-소스" class="nav-link active" data-scroll-target="#다루는-데이터-소스">다루는 데이터 소스</a>
+  <ul class="collapse">
+  <li><a href="#에어코리아-대기오염정보" id="toc-에어코리아-대기오염정보" class="nav-link" data-scroll-target="#에어코리아-대기오염정보">에어코리아 대기오염정보</a></li>
+  <li><a href="#기상청-지상관측-asosaws" id="toc-기상청-지상관측-asosaws" class="nav-link" data-scroll-target="#기상청-지상관측-asosaws">기상청 지상관측 (ASOS/AWS)</a></li>
+  <li><a href="#물환경-수질측정망" id="toc-물환경-수질측정망" class="nav-link" data-scroll-target="#물환경-수질측정망">물환경 수질측정망</a></li>
+  <li><a href="#해양환경측정망" id="toc-해양환경측정망" class="nav-link" data-scroll-target="#해양환경측정망">해양환경측정망</a></li>
+  </ul></li>
+  <li><a href="#갱신-주기-차이가-만드는-문제" id="toc-갱신-주기-차이가-만드는-문제" class="nav-link" data-scroll-target="#갱신-주기-차이가-만드는-문제">갱신 주기 차이가 만드는 문제</a></li>
   <li><a href="#수질측정망의-지연" id="toc-수질측정망의-지연" class="nav-link" data-scroll-target="#수질측정망의-지연">수질측정망의 지연</a></li>
   <li><a href="#수집-시점-표기" id="toc-수집-시점-표기" class="nav-link" data-scroll-target="#수집-시점-표기">수집 시점 표기</a></li>
   </ul>
@@ -342,55 +349,148 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>이 사이트가 다루는 데이터 소스입니다. 갱신 주기가 소스마다 크게 다르고, “갱신 주기”와 “실제로 손에 들어오는 시점” 사이의 지연도 제각각입니다. 분석에서 두 소스를 나란히 놓을 때 이 차이가 가장 자주 문제가 됩니다.</p>
+<section id="다루는-데이터-소스" class="level2">
+<h2 class="anchored" data-anchor-id="다루는-데이터-소스">다루는 데이터 소스</h2>
+<section id="에어코리아-대기오염정보" class="level3">
+<h3 class="anchored" data-anchor-id="에어코리아-대기오염정보">에어코리아 대기오염정보</h3>
+<dl>
+<dt>제공기관</dt>
+<dd>
+한국환경공단
+</dd>
+<dt>갱신 주기</dt>
+<dd>
+1시간
+</dd>
+<dt>지연</dt>
+<dd>
+1시간 내외. 확정값은 익월 보정
+</dd>
+<dt>라이선스</dt>
+<dd>
+공공누리 제1유형
+</dd>
+<dt>링크</dt>
+<dd>
+<a href="https://www.airkorea.or.kr">airkorea.or.kr</a>
+</dd>
+</dl>
+<p>전국 도시대기·도로변 측정소의 시간별 농도입니다. 이 사이트에서 가장 자주 쓰는 소스이고, 관측치가 압도적으로 많아 집계 방식에 따라 결론이 크게 달라집니다. 실시간으로 뜨는 값과 나중에 보정된 확정값이 다르므로, 연도 간 비교에는 확정값만 씁니다.</p>
+</section>
+<section id="기상청-지상관측-asosaws" class="level3">
+<h3 class="anchored" data-anchor-id="기상청-지상관측-asosaws">기상청 지상관측 (ASOS/AWS)</h3>
+<dl>
+<dt>제공기관</dt>
+<dd>
+기상청
+</dd>
+<dt>갱신 주기</dt>
+<dd>
+1시간 (시간자료) / 1일 (일자료)
+</dd>
+<dt>지연</dt>
+<dd>
+시간자료 1시간 내외, 일자료 익일
+</dd>
+<dt>라이선스</dt>
+<dd>
+공공누리 제1유형
+</dd>
+<dt>링크</dt>
+<dd>
+<a href="https://data.kma.go.kr">data.kma.go.kr</a>
+</dd>
+</dl>
+<p>대기질을 다룰 때 거의 항상 함께 봐야 하는 소스입니다. 풍속·강수·혼합고 같은 기상 조건이 농도를 크게 좌우하므로, 기상을 빼놓고 농도 변화를 배출량 변화로 해석하면 틀리기 쉽습니다. ASOS는 유인관측, AWS는 무인관측으로 관측 항목과 지점 밀도가 다릅니다.</p>
+</section>
+<section id="물환경-수질측정망" class="level3">
+<h3 class="anchored" data-anchor-id="물환경-수질측정망">물환경 수질측정망</h3>
+<dl>
+<dt>제공기관</dt>
+<dd>
+국립환경과학원
+</dd>
+<dt>갱신 주기</dt>
+<dd>
+월 1회
+</dd>
+<dt>지연</dt>
+<dd>
+<strong>익년 초 확정 공개</strong> — 연중에는 잠정치만 볼 수 있습니다
+</dd>
+<dt>라이선스</dt>
+<dd>
+공공누리 제1유형
+</dd>
+<dt>링크</dt>
+<dd>
+<a href="https://water.nier.go.kr">water.nier.go.kr</a>
+</dd>
+</dl>
+<p>하천·호소의 BOD, COD, T-P, 총대장균군 등을 월 1회 측정합니다. 지연이 가장 길어 “최근”을 말할 수 없는 소스입니다. 아래 <a href="#수질측정망의-지연">별도 항목</a>에서 자세히 다룹니다.</p>
+</section>
+<section id="해양환경측정망" class="level3">
+<h3 class="anchored" data-anchor-id="해양환경측정망">해양환경측정망</h3>
+<dl>
+<dt>제공기관</dt>
+<dd>
+해양환경공단
+</dd>
+<dt>갱신 주기</dt>
+<dd>
+분기 (연 4회)
+</dd>
+<dt>지연</dt>
+<dd>
+분기 종료 후 수개월
+</dd>
+<dt>라이선스</dt>
+<dd>
+공공누리 제1유형
+</dd>
+<dt>링크</dt>
+<dd>
+<a href="https://www.meis.go.kr">meis.go.kr</a>
+</dd>
+</dl>
+<p>연안 해역의 수질·퇴적물·해양생물을 분기마다 조사합니다. 관측 빈도가 가장 낮아 한 해에 지점당 네 개의 값만 생깁니다. 이 정도 표본으로는 계절 변동과 추세를 분리하기 어려우므로, 단독으로 추세를 말하기보다 다년치를 쌓아 보는 쪽이 맞습니다.</p>
+</section>
+</section>
+<section id="갱신-주기-차이가-만드는-문제" class="level2">
+<h2 class="anchored" data-anchor-id="갱신-주기-차이가-만드는-문제">갱신 주기 차이가 만드는 문제</h2>
+<p>에어코리아는 한 시간에 한 번, 해양환경측정망은 석 달에 한 번 값이 생깁니다. 지점 한 곳을 일 년 동안 관측했을 때 쌓이는 값의 개수로 보면 이렇습니다.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>이름</th>
-<th>제공기관</th>
-<th>갱신 주기</th>
-<th>지연</th>
-<th>라이선스</th>
-<th>링크</th>
+<th>소스</th>
+<th style="text-align: center;">갱신 주기</th>
+<th style="text-align: right;">지점당 연간 관측치</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>에어코리아 대기오염정보</td>
-<td>한국환경공단</td>
-<td>1시간</td>
-<td>1시간 내외 (확정값은 익월 보정)</td>
-<td>공공누리 제1유형</td>
-<td><a href="https://www.airkorea.or.kr">바로가기</a></td>
+<td>에어코리아</td>
+<td style="text-align: center;">1시간</td>
+<td style="text-align: right;">8,760</td>
 </tr>
 <tr class="even">
-<td>기상청 지상관측 (ASOS/AWS)</td>
-<td>기상청</td>
-<td>1시간 / 1일</td>
-<td>시간자료 1시간 내외, 일자료 익일</td>
-<td>공공누리 제1유형</td>
-<td><a href="https://data.kma.go.kr">바로가기</a></td>
+<td>기상청 일자료</td>
+<td style="text-align: center;">1일</td>
+<td style="text-align: right;">365</td>
 </tr>
 <tr class="odd">
 <td>물환경 수질측정망</td>
-<td>국립환경과학원</td>
-<td>월 1회</td>
-<td><strong>익년 초 확정 공개</strong></td>
-<td>공공누리 제1유형</td>
-<td><a href="https://water.nier.go.kr">바로가기</a></td>
+<td style="text-align: center;">월 1회</td>
+<td style="text-align: right;">12</td>
 </tr>
 <tr class="even">
 <td>해양환경측정망</td>
-<td>해양환경공단</td>
-<td>분기 (연 4회)</td>
-<td>분기 종료 후 수개월</td>
-<td>공공누리 제1유형</td>
-<td><a href="https://www.meis.go.kr">바로가기</a></td>
+<td style="text-align: center;">분기</td>
+<td style="text-align: right;">4</td>
 </tr>
 </tbody>
 </table>
-<section id="갱신-주기-차이가-만드는-문제" class="level2">
-<h2 class="anchored" data-anchor-id="갱신-주기-차이가-만드는-문제">갱신 주기 차이가 만드는 문제</h2>
-<p>에어코리아는 한 시간에 한 번, 해양환경측정망은 석 달에 한 번 값이 생깁니다. 가장 잦은 소스와 가장 드문 소스 사이에 2,000배가 넘는 차이가 있습니다. 같은 기간을 다루더라도 한쪽은 수만 개 관측치이고 다른 한쪽은 네 개입니다. 이 둘을 같은 그래프에 겹쳐 그리면 대개 드문 쪽이 잡음처럼 보이거나, 잦은 쪽을 평균 내다가 정작 보려던 변동을 지워 버립니다.</p>
+<p>가장 잦은 소스와 가장 드문 소스 사이에 2,000배가 넘는 차이가 있습니다. 같은 기간을 다루더라도 한쪽은 수만 개 관측치이고 다른 한쪽은 네 개입니다. 이 둘을 같은 그래프에 겹쳐 그리면 대개 드문 쪽이 잡음처럼 보이거나, 잦은 쪽을 평균 내다가 정작 보려던 변동을 지워 버립니다.</p>
 </section>
 <section id="수질측정망의-지연" class="level2">
 <h2 class="anchored" data-anchor-id="수질측정망의-지연">수질측정망의 지연</h2>

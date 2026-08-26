@@ -123,6 +123,42 @@ figcaption,
   color: $accent !important;
 }
 
+// 항목-값 목록. 라벨 열 너비를 내용에 맞춰 잡아 값이 세로로 정렬되게 한다.
+// 좁은 화면에서는 라벨을 값 위로 올린다.
+main dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.45rem 1.5rem;
+  margin: 1.25rem 0 1.5rem;
+}
+
+main dl dt {
+  color: $muted-color;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding-top: 0.05rem;
+}
+
+main dl dd {
+  margin: 0;
+}
+
+main dl dd > p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+@media (max-width: 575px) {
+  main dl {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+
+  main dl dd {
+    margin-bottom: 0.75rem;
+  }
+}
+
 main table {
   border: 1px solid $border-color;
   border-radius: $border-radius;
