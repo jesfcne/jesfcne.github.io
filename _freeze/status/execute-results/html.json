@@ -1,0 +1,12 @@
+{
+  "hash": "be00609ec6c94d381fd947f1bc7d5798",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"수집 현황\"\ndescription: \"수집기별 마지막 실행 시각과 상태\"\n---\n\n수집기가 각각 언제 마지막으로 돌았고 무엇을 가져왔는지 보여주는 페이지입니다.\n수집기는 실행이 끝날 때마다 `status/<이름>.json` 에 결과를 남기고,\n이 표는 그 파일들을 읽어서 그립니다.\n\n노트에 쓰인 수치가 언제 것인지 되짚을 수 있어야 하므로, 수집 기록은\n분석 결과와 같은 저장소에 함께 커밋합니다.\n\n::: {#b7bed2cb .cell execution_count=1}\n\n::: {.cell-output .cell-output-display .cell-output-markdown}\n수집기가 아직 없습니다. 첫 수집기를 붙이면 이 자리에 실행 이력이 표로 나타납니다.\n:::\n:::\n\n\n## 상태 파일 형식\n\n수집기는 아래 형태의 JSON을 남깁니다.\n\n```json\n{\n  \"collector\": \"airkorea_hourly\",\n  \"last_run\": \"2026-08-26T09:00:00+09:00\",\n  \"covers\": \"2026-08-25 ~ 2026-08-26\",\n  \"rows\": 12480,\n  \"status\": \"ok\"\n}\n```\n\n`status` 는 `ok`, `partial`, `failed` 중 하나입니다. `partial` 은 일부 지점이나\n일부 시간대를 받지 못했다는 뜻이며, 어느 부분이 빠졌는지는 수집기 로그에 남습니다.\n\n",
+    "supporting": [
+      "status_files\\figure-html"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

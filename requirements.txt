@@ -1,0 +1,5 @@
+pyyaml
+pandas
+plotly
+jupyter
+duckdb

@@ -1,0 +1,45 @@
+project:
+  type: website
+  output-dir: docs
+  post-render:
+    # Quarto가 만드는 `*_files/` 디렉터리를 Jekyll이 밑줄 접두사로 보고 무시해
+    # CSS/JS가 404가 된다. .nojekyll로 Jekyll 처리 자체를 끈다.
+    - python -c "open('docs/.nojekyll', 'w').close()"
+
+website:
+  title: "환경 데이터 노트"
+  site-url: https://jesfcne.github.io
+  description: "국내 공개 환경 데이터를 직접 수집·분석해 얻은 인사이트 기록"
+  navbar:
+    left:
+      - href: notes/index.qmd
+        text: 노트
+      - href: claims.qmd
+        text: 인사이트
+      - href: sources.qmd
+        text: 데이터 출처
+      - href: status.qmd
+        text: 수집 현황
+      - href: about.qmd
+        text: 소개
+    right:
+      - icon: github
+        href: https://github.com/jesfcne/jesfcne.github.io
+        aria-label: GitHub 저장소
+  page-footer:
+    left: "출처 표기 조건 아래 자유롭게 인용할 수 있습니다."
+    right: "[GitHub](https://github.com/jesfcne/jesfcne.github.io)"
+
+lang: ko
+
+format:
+  html:
+    toc: true
+    toc-title: 목차
+    code-fold: true
+    code-summary: "코드 보기"
+    code-tools: false
+
+execute:
+  freeze: auto
+  warning: false
