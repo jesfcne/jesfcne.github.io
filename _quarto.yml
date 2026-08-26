@@ -2,9 +2,7 @@ project:
   type: website
   output-dir: docs
   post-render:
-    # Quarto가 만드는 `*_files/` 디렉터리를 Jekyll이 밑줄 접두사로 보고 무시해
-    # CSS/JS가 404가 된다. .nojekyll로 Jekyll 처리 자체를 끈다.
-    - python -c "open('docs/.nojekyll', 'w').close()"
+    - python scripts/make_nojekyll.py
 
 website:
   title: "환경 데이터 노트"
@@ -34,6 +32,14 @@ lang: ko
 
 format:
   html:
+    theme:
+      light: [themes/typography.scss, themes/structure.scss, themes/light.scss]
+      dark: [themes/typography.scss, themes/structure.scss, themes/dark.scss]
+    include-in-header:
+      # Pretendard. 시스템 기본 한글 글꼴(맑은 고딕)과 조판 품질 차이가 크다.
+      - text: |
+          <link rel="preconnect" href="https://cdn.jsdelivr.net">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
     toc: true
     toc-title: 목차
     code-fold: true

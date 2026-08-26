@@ -1,0 +1,181 @@
+/*-- scss:defaults --*/
+
+// B안의 구조. 색은 여기서 정하지 않고 팔레트 파일이 채운다.
+// 아래 값들은 팔레트가 지정하지 않았을 때의 대비책이다.
+
+$font-family-sans-serif: "Pretendard Variable", Pretendard, -apple-system,
+  BlinkMacSystemFont, system-ui, "Segoe UI", "Malgun Gothic", sans-serif !default;
+$headings-font-family: $font-family-sans-serif !default;
+
+$font-size-root: 16.5px !default;
+$grid-body-width: 760px !default;
+$border-radius: 0.625rem !default;
+
+$heading-color: $body-color !default;
+$muted-color: rgba($body-color, 0.6) !default;
+$card-bg: $body-bg !default;
+$subtle-bg: $body-bg !default;
+$hairline: $border-color !default;
+$accent: $link-color !default;
+$accent-soft-bg: $subtle-bg !default;
+$accent-soft-border: $border-color !default;
+$card-shadow: none !default;
+$card-shadow-hover: none !default;
+
+/*-- scss:rules --*/
+
+h1,
+h2,
+h3,
+h4,
+.quarto-title-block .title {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: $heading-color;
+}
+
+.quarto-title-block .title {
+  font-size: 2.15rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+.quarto-title-block .description,
+.listing-date,
+figcaption,
+.nav-footer {
+  color: $muted-color;
+}
+
+// 스크롤할 때 아래 내용이 비쳐 보이도록 반투명 + 흐림 처리.
+.navbar {
+  border-bottom: 1px solid $border-color;
+  box-shadow: none;
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+}
+
+// 카드: 한 톤 다른 면 + 부드러운 그림자. 호버 시 살짝 떠오른다.
+.quarto-post,
+.quarto-grid-item {
+  background: $card-bg;
+  border: 1px solid $border-color !important;
+  border-radius: $border-radius !important;
+  box-shadow: $card-shadow !important;
+  padding: 1.35rem 1.5rem;
+}
+
+.quarto-post:hover,
+.quarto-grid-item:hover {
+  transform: translateY(-2px);
+  border-color: $accent-soft-border !important;
+  box-shadow: $card-shadow-hover !important;
+}
+
+// 기본형 목록(랜딩의 "최근 노트")은 날짜 칸이 행 너비의 33%를 차지한다.
+// 날짜는 열 자리면 충분하므로 절반으로 줄이고 남는 폭을 제목과 설명에 준다.
+.quarto-post .metadata {
+  flex-basis: 16%;
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+
+.quarto-post .body {
+  flex-basis: auto;
+  flex-grow: 1;
+}
+
+.listing-title,
+.quarto-grid-item .card-title {
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: $heading-color;
+}
+
+.listing-description,
+.quarto-grid-item .card-text {
+  color: $body-color;
+}
+
+// 태그를 알약 모양 배지로.
+.listing-category,
+.quarto-category {
+  display: inline-block;
+  background: $subtle-bg !important;
+  border: 1px solid $border-color !important;
+  border-radius: 999px !important;
+  padding: 0.15rem 0.6rem !important;
+  margin: 0.2rem 0.35rem 0.2rem 0;
+  opacity: 1;
+  color: $muted-color !important;
+}
+
+.listing-category:hover,
+.quarto-category:hover {
+  background: $accent-soft-bg !important;
+  border-color: $accent-soft-border !important;
+  color: $accent !important;
+}
+
+main table {
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+main table th {
+  background: $subtle-bg;
+  color: $heading-color;
+  border-bottom: 1px solid $border-color;
+}
+
+main table td {
+  border-bottom: 1px solid $hairline;
+}
+
+main table tr:last-child td {
+  border-bottom: 0;
+}
+
+main pre {
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+}
+
+main div.callout {
+  border-radius: $border-radius;
+  background: $card-bg;
+  border: 1px solid $border-color;
+  border-left: 3px solid $muted-color;
+}
+
+main div.callout.callout-note {
+  border-left-color: $accent;
+}
+
+blockquote {
+  border-left-color: $border-color;
+  color: $muted-color;
+}
+
+.sidebar nav[role="doc-toc"] > ul li a {
+  color: $muted-color;
+}
+
+.sidebar nav[role="doc-toc"] > ul li a.active {
+  border-left-color: $accent;
+  color: $accent;
+  font-weight: 600;
+}
+
+.nav-footer {
+  border-top: 1px solid $border-color;
+}

@@ -1,0 +1,22 @@
+/*-- scss:defaults --*/
+// 1. 중성 회색 — 제목은 또렷하게 두고 본문만 한 단계 눅인다.
+$body-bg: #fafafa;
+$body-color: #3f3f46;
+$heading-color: #18181b;
+$muted-color: #71717a;
+$card-bg: #ffffff;
+$subtle-bg: #f4f4f5;
+$border-color: #e4e4e7;
+$hairline: #f1f1f3;
+$link-color: #0f766e;
+$link-hover-color: #115e59;
+$accent: #0f766e;
+$accent-soft-bg: #ccfbf1;
+$accent-soft-border: #5eead4;
+$card-shadow: 0 1px 2px rgba(24, 24, 27, 0.04);
+$card-shadow-hover: 0 8px 24px -6px rgba(24, 24, 27, 0.1);
+$navbar-bg: rgba(250, 250, 250, 0.82);
+$navbar-fg: #18181b;
+$footer-bg: #fafafa;
+$code-bg: #f4f4f5;
+$code-color: #0f766e;
