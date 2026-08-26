@@ -62,20 +62,19 @@ python scripts/check_frontmatter.py
 
 ## 댓글
 
-노트마다 댓글난을 둘 수 있습니다. GitHub Discussions 에 저장되므로 제3자
-서비스에 글이 남지 않습니다. 읽는 사람은 GitHub 계정이 필요합니다.
+노트마다 댓글난이 있습니다. 댓글은 이 저장소의 **GitHub Discussions**
+(Announcements 카테고리)에 저장됩니다. 제3자 서비스에 글이 남지 않고
+광고·추적기가 붙지 않습니다. 쓰는 사람은 GitHub 계정이 필요합니다.
 
-설정은 `notes/_metadata.yml` 에 준비되어 있고, 아래 세 단계를 마친 뒤
-주석을 풀면 켜집니다.
+설정은 `notes/_metadata.yml` 에 있습니다. 목록 페이지는 `comments: false` 로
+꺼 두었고, 랜딩·인사이트 등 노트 밖 페이지에는 적용되지 않습니다.
 
-1. 저장소 **Settings → General → Features → Discussions** 체크
-2. [giscus 앱](https://github.com/apps/giscus) 설치 후 이 저장소에 권한 부여
-3. [giscus.app](https://giscus.app) 에서 `repo-id` 와 `category-id` 확인
+`mapping: pathname` 이라 노트 **주소**로 토론을 짝짓습니다. 제목을 고쳐도
+댓글이 흩어지지 않지만, **폴더명(슬러그)을 바꾸면 기존 댓글과 끊깁니다.**
+한 번 정한 슬러그는 바꾸지 마세요.
 
-카테고리는 **Announcements** 를 씁니다. 아무나 새 토론을 열지 못하고,
-댓글은 노트마다 자동으로 생긴 토론에만 달립니다.
-
-목록 페이지(`notes/index.qmd`)는 `comments: false` 로 꺼 두었습니다.
+댓글이 처음 달릴 때 giscus 가 해당 노트의 토론을 자동으로 만듭니다.
+스팸이 오면 Discussions 에서 지우면 사이트에서도 사라집니다.
 
 ## 배포
 
