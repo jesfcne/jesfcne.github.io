@@ -1,5 +1,5 @@
-# notes/ 아래 모든 노트에 적용되는 설정.
-# 목록 페이지인 notes/index.qmd 는 프론트매터에서 comments: false 로 끈다.
+# issues/ 아래 모든 호에 적용되는 설정.
+# 목록 페이지인 issues/index.qmd 는 프론트매터에서 comments: false 로 끈다.
 
 # 댓글은 이 저장소의 GitHub Discussions 에 저장된다. 제3자 서비스에 글이 남지 않고,
 # 광고와 추적기가 붙지 않으며, 저장소를 옮기면 댓글도 함께 따라온다.
@@ -9,14 +9,14 @@ comments:
     repo: jesfcne/jesfcne.github.io
     repo-id: R_kgDOIYqsKw
     # Announcements 유형이라 아무나 새 토론을 열 수 없다. 댓글은 giscus 가
-    # 노트마다 자동으로 만든 토론에만 달린다.
+    # 호마다 자동으로 만든 토론에만 달린다.
     category: Announcements
     category-id: DIC_kwDOIYqsK84DEPOi
-    # 노트 주소로 토론을 짝짓는다. 제목을 고쳐도 댓글이 흩어지지 않는다.
-    # 다만 폴더명(슬러그)을 바꾸면 기존 댓글과 연결이 끊긴다.
+    # 호의 주소로 토론을 짝짓는다. 제목을 고쳐도 댓글이 흩어지지 않는다.
+    # 다만 폴더명(issues/2026-W44 등)을 바꾸면 기존 댓글과 연결이 끊긴다.
     mapping: pathname
     reactions-enabled: true
-    # 노트가 길어서 입력창을 위에 둔다. 끝까지 스크롤하지 않아도 쓸 수 있다.
+    # 글이 길어서 입력창을 위에 둔다. 끝까지 스크롤하지 않아도 쓸 수 있다.
     input-position: top
     # 첫 화면 로딩에 댓글 iframe 이 끼어들지 않게 한다.
     loading: lazy
