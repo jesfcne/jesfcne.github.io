@@ -1,0 +1,56 @@
+# 사이트를 렌더링해 GitHub Pages 에 배포한다.
+#
+# - PR: 렌더링만 해서 깨지지 않는지 확인한다. 머지(=발행 승인) 전 점검용.
+# - main 푸시(=PR 머지): 렌더링 후 배포한다.
+#
+# 이 워크플로는 AI 를 호출하지 않는다. 차트 코드도 다시 실행하지 않고
+# 작성자가 커밋한 _freeze/ 결과로 렌더링한다.
+
+name: 렌더링·배포
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# 배포가 겹치면 최신 것만 남긴다. 진행 중인 배포는 끊지 않는다.
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          # 로컬과 같은 버전을 쓴다. 올릴 때는 로컬과 함께 올린다.
+          version: 1.10.18
+
+      - name: 렌더링
+        run: quarto render
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

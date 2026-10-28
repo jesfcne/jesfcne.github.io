@@ -1,60 +1,25 @@
 ---
-title: "환경 데이터 노트"
-description: "국내에서 공개된 환경 데이터를 직접 수집·분석해 얻은 인사이트를 기록합니다."
+title: "기후·환경 주간 브리핑"
+description: "한 주의 기후·환경 이슈를 긴 흐름 속에서 정리합니다."
 listing:
-  id: recent-notes
-  contents: "notes/*/index.qmd"
+  id: recent-issues
+  contents: "issues/*/index.qmd"
   type: default
-  max-items: 3
+  max-items: 4
   sort: "date desc"
-  fields: [date, title, reading-time, description]
-  field-display-names:
-    reading-time: "분량"
+  fields: [date, title, description]
   date-format: "YYYY-MM-DD"
 toc: false
 ---
 
-::: {.hero}
+매주 월요일, 지난 한 주 동안 나온 기후·환경 소식 가운데 다섯 가지를 골라 정리합니다.
+글로벌 이슈와 국내 이슈를 함께 다루고, 새로 나온 논문과 보고서도 살핍니다.
 
-::: {.hero-text}
-국내에 공개된 대기·수질·해양·기상 데이터를 수집합니다.\
-다양한 환경 데이터를 모아 같은 축 위에 올려놓고 봅니다.\
-시공간 속 데이터 안에 숨겨진 인사이트를 발견합니다.
+한 주의 소식만으로는 그 의미를 가늠하기 어렵습니다. 그래서 필요할 때는
+수십 년에 걸친 관측 자료와 기존 연구를 함께 놓고, 이번 주의 일이
+긴 흐름 속에서 어디쯤에 있는지를 보여 드립니다.
 
-노트 한 편은 질문 하나에서 시작합니다. 주장과 함께 그 주장을 뒤집을
-조건을 적고, 쓴 코드와 데이터를 내려받은 시점을 남깁니다. 예상과
-어긋난 결과도 고치지 않고 그대로 둡니다.
-:::
+## 최근 호
 
-::: {.hero-art}
-```{=html}
-<svg class="cadence" viewBox="0 0 288 192" role="img" aria-labelledby="cadence-title" xmlns="http://www.w3.org/2000/svg">
-<title id="cadence-title">관측 주기가 다른 네 데이터 소스를 점의 밀도로 나타낸 그림. 위에서부터 시간별, 일별, 월별, 분기별.</title>
-<g fill="currentColor">
-<line x1="8" y1="30" x2="280" y2="30" stroke="currentColor" stroke-width="1" opacity="0.171"/>
-<g opacity="0.95"><circle cx="8.0" cy="30" r="3.0"/><circle cx="19.3" cy="30" r="3.0"/><circle cx="30.7" cy="30" r="3.0"/><circle cx="42.0" cy="30" r="3.0"/><circle cx="53.3" cy="30" r="3.0"/><circle cx="64.7" cy="30" r="3.0"/><circle cx="76.0" cy="30" r="3.0"/><circle cx="87.3" cy="30" r="3.0"/><circle cx="98.7" cy="30" r="3.0"/><circle cx="110.0" cy="30" r="3.0"/><circle cx="121.3" cy="30" r="3.0"/><circle cx="132.7" cy="30" r="3.0"/><circle cx="144.0" cy="30" r="3.0"/><circle cx="155.3" cy="30" r="3.0"/><circle cx="166.7" cy="30" r="3.0"/><circle cx="178.0" cy="30" r="3.0"/><circle cx="189.3" cy="30" r="3.0"/><circle cx="200.7" cy="30" r="3.0"/><circle cx="212.0" cy="30" r="3.0"/><circle cx="223.3" cy="30" r="3.0"/><circle cx="234.7" cy="30" r="3.0"/><circle cx="246.0" cy="30" r="3.0"/><circle cx="257.3" cy="30" r="3.0"/><circle cx="268.7" cy="30" r="3.0"/><circle cx="280.0" cy="30" r="3.0"/></g>
-<line x1="8" y1="74" x2="280" y2="74" stroke="currentColor" stroke-width="1" opacity="0.140"/>
-<g opacity="0.78"><circle cx="8.0" cy="74" r="3.4"/><circle cx="30.7" cy="74" r="3.4"/><circle cx="53.3" cy="74" r="3.4"/><circle cx="76.0" cy="74" r="3.4"/><circle cx="98.7" cy="74" r="3.4"/><circle cx="121.3" cy="74" r="3.4"/><circle cx="144.0" cy="74" r="3.4"/><circle cx="166.7" cy="74" r="3.4"/><circle cx="189.3" cy="74" r="3.4"/><circle cx="212.0" cy="74" r="3.4"/><circle cx="234.7" cy="74" r="3.4"/><circle cx="257.3" cy="74" r="3.4"/><circle cx="280.0" cy="74" r="3.4"/></g>
-<line x1="8" y1="118" x2="280" y2="118" stroke="currentColor" stroke-width="1" opacity="0.112"/>
-<g opacity="0.62"><circle cx="8.0" cy="118" r="3.8"/><circle cx="53.3" cy="118" r="3.8"/><circle cx="98.7" cy="118" r="3.8"/><circle cx="144.0" cy="118" r="3.8"/><circle cx="189.3" cy="118" r="3.8"/><circle cx="234.7" cy="118" r="3.8"/><circle cx="280.0" cy="118" r="3.8"/></g>
-<line x1="8" y1="162" x2="280" y2="162" stroke="currentColor" stroke-width="1" opacity="0.086"/>
-<g opacity="0.48"><circle cx="8.0" cy="162" r="4.2"/><circle cx="98.7" cy="162" r="4.2"/><circle cx="189.3" cy="162" r="4.2"/><circle cx="280.0" cy="162" r="4.2"/></g>
-</g>
-</svg>
-```
-
-[시간별 · 일별 · 월별 · 분기별]{.hero-caption}
-:::
-
-:::
-
-지금 이 순간의 수치가 궁금하다면 각 기관의 공식 사이트에서 확인하는 것이 정확합니다.\
-이곳에서는 여러 해가 쌓여야 답이 나오는 질문을 다룹니다.
-
-노트의 핵심 내용은 [인사이트](claims.qmd)에,
-수집한 데이터의 출처와 갱신 주기는 [데이터 출처](sources.qmd)에 정리해 두었습니다.
-
-## 최근 노트
-
-::: {#recent-notes}
+::: {#recent-issues}
 :::

@@ -1,0 +1,13 @@
+---
+title: "지난 호"
+description: "기후·환경 주간 브리핑의 모든 호"
+listing:
+  contents: "*/index.qmd"
+  type: default
+  sort: "date desc"
+  fields: [date, title, description]
+  date-format: "YYYY-MM-DD"
+  feed: true
+comments: false
+toc: false
+---

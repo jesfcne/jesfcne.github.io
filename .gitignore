@@ -1,16 +1,13 @@
 .quarto/
+/.quarto/
+**/*.quarto_ipynb
 __pycache__/
 *.pyc
 .venv/
 .DS_Store
 
-# 원자료와 중간 산출물은 커밋하지 않는다. 노트가 읽는 건 data/marts/ 뿐이다.
-data/processed/
+# 렌더링 산출물. GitHub Actions 가 렌더링해 배포하므로 커밋하지 않는다.
+_site/
 
-# docs/ 와 _freeze/ 는 커밋 대상이므로 여기에 넣지 않는다.
-#   docs/    GitHub Pages가 이 폴더를 그대로 서빙한다.
-#   _freeze/ 변경 없는 노트를 재실행하지 않게 해 준다.
-
-/.quarto/
-**/*.quarto_ipynb
-
+# _freeze/ 는 커밋 대상이다. CI 가 차트 코드를 다시 실행하지 않고
+# 이 결과로 렌더링한다.

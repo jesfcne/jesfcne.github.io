@@ -40,20 +40,20 @@ def main() -> None:
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
 
-    title = ImageFont.truetype(str(BOLD), 68)
+    title = ImageFont.truetype(str(BOLD), 58)
     lead = ImageFont.truetype(str(REGULAR), 30)
     small = ImageFont.truetype(str(REGULAR), 24)
 
     x = 90
-    d.text((x, 168), "환경 데이터 노트", font=title, fill=HEADING)
-    d.text((x, 286), "국내 공개 환경 데이터를 직접 수집·분석해", font=lead, fill=BODY)
-    d.text((x, 332), "얻은 인사이트를 기록합니다.", font=lead, fill=BODY)
+    d.text((x, 168), "기후·환경 주간 브리핑", font=title, fill=HEADING)
+    d.text((x, 286), "한 주의 기후·환경 이슈를", font=lead, fill=BODY)
+    d.text((x, 332), "긴 흐름 속에서 정리합니다.", font=lead, fill=BODY)
 
     d.line([(x, 412), (x + 56, 412)], fill=ACCENT, width=3)
     d.text((x, 440), "jesfcne.github.io", font=small, fill=MUTED)
 
     # 오른쪽 도형
-    art_x0, art_x1, art_y = 760, 1110, 200
+    art_x0, art_x1, art_y = 820, 1110, 200
     for n, r, op in ROWS:
         color = blend(ACCENT, op)
         d.line([(art_x0, art_y), (art_x1, art_y)], fill=blend(ACCENT, op * 0.2), width=2)
