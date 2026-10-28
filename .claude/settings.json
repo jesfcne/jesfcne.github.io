@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch",
+      "Bash(python scripts/pipeline.py:*)",
+      "Bash(python scripts/validate_schema.py:*)",
+      "Bash(python scripts/verify_sources.py:*)",
+      "Bash(python scripts/fetch_series.py:*)",
+      "Bash(python scripts/make_references.py:*)",
+      "Bash(python scripts/check_frontmatter.py:*)",
+      "Bash(python scripts/collect_feedback.py:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(pytest:*)",
+      "Bash(quarto render:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git switch:*)",
+      "Bash(git pull --ff-only:*)"
+    ]
+  }
+}

@@ -26,6 +26,10 @@ from common import SCHEMA_DIR, ISSUE_RE, parse_partial_date, read_json  # noqa: 
 
 KINDS = {
     "sources.json": ("source-list", "sources"),
+    # 리서치 에이전트가 역할별로 따로 쓰는 파일. pipeline.py merge-sources 가 합친다.
+    "sources-global.json": ("source-list", "sources"),
+    "sources-korea.json": ("source-list", "sources"),
+    "sources-academic.json": ("source-list", "sources"),
     "background.json": ("source-list", "background"),
     "verified.json": ("source-list", "verified"),
     "background-verified.json": ("source-list", "verified"),
