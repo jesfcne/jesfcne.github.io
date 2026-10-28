@@ -54,9 +54,9 @@ AI 에이전트 여러 개가 리서치, 검증, 분석, 자료 보강, 집필, 
 | # | 단계 | 담당 | 입력 | 출력 |
 | --- | --- | --- | --- | --- |
 | 0 | 피드백 수집 | `feedback` 에이전트 | Discussions 댓글, `correction` 라벨 이슈 | `feedback.md` |
-| 1 | 리서치 | `researcher` 에이전트 × 3 (글로벌·국내·학술 분담, 병렬) | 대상 기간, `source-whitelist.yml`, `published_topics.json` | `sources.json` |
+| 1 | 리서치 | `researcher` 에이전트 × 3 (글로벌·국내·학술 분담, 병렬) | 대상 기간, `source-whitelist.yml`, 발행된 주제(`pipeline.py topics`) | `sources-<역할>.json` → `sources.json` |
 | 2 | 출처 검증 | `verify_sources.py` 스크립트 + `verifier` 에이전트 | `sources.json` | `verified.json` |
-| 3 | 분석·선정 | `analyst` 에이전트 | `verified.json`, `published_topics.json`, `feedback.md` | `brief.md` (보강 요청 포함) |
+| 3 | 분석·선정 | `analyst` 에이전트 | `verified.json`, 발행된 주제(`pipeline.py topics`), `feedback.md` | `brief.md` (보강 요청 포함) |
 | 4 | 자료 보강 | `fetch_series.py` 스크립트 + `data-scout` 에이전트, 이어서 `verify_sources.py` | `brief.md`의 보강 요청, `series-registry.yml` | `background.json` → `background-verified.json`, `data/series/…` |
 | 5 | 집필 | `writer` 에이전트, 마무리로 `make_references.py` | `brief.md`, `verified.json`, `background-verified.json`, `style-guide.md` | `issues/<호>/index.qmd`, `references.json` |
 | 6 | 검수 | `reviewer` 에이전트 (독립 맥락) | `index.qmd`, `verified.json`, `background-verified.json` | `review.json` |
@@ -82,7 +82,7 @@ AI 에이전트 여러 개가 리서치, 검증, 분석, 자료 보강, 집필, 
     WMO State of the Global Climate, Lancet Countdown, IEA World Energy Outlook,
     기상청 기후변화 보고서, 한국환경연구원 보고서 등)
 - 후보는 분담당 8~12개를 모읍니다. 선정은 ③에서 합니다.
-- 이미 다룬 주제(`published_topics.json`)는 새 진전이 있을 때만 `follow_up: true`로 올립니다.
+- 이미 다룬 주제(`python scripts/pipeline.py topics`, 발행된 호의 프론트매터에서 만든다)는 새 진전이 있을 때만 `follow_up: true`로 올립니다.
 
 `sources.json` 항목 스키마:
 
@@ -281,18 +281,20 @@ AI 에이전트 여러 개가 리서치, 검증, 분석, 자료 보강, 집필, 
 
 | 에이전트 | 역할 | 도구 | 모델 |
 | --- | --- | --- | --- |
-| `researcher` | 이번 주 후보 수집 (글로벌·국내·학술), `sources.json` 작성 | WebSearch, WebFetch, Write | Sonnet |
-| `verifier` | 스크립트가 판정 못 한 출처 확인 | WebFetch, Read, Write | Sonnet |
-| `analyst` | 이슈 선정, 보강 요청 작성, `brief.md` 작성 | Read, Write | Opus |
-| `data-scout` | 레지스트리 밖 장기 자료·배경 연구 확보 | WebSearch, WebFetch, Bash(python), Write | Sonnet |
-| `writer` | 원고 작성, 차트 코드 | Read, Write, Edit, Bash(quarto, python) | Opus |
-| `reviewer` | 독립 검수 | Read, WebFetch, Write | Opus |
-| `feedback` | 독자 피드백 분류, 정정 후보 추출 | Bash(gh), Read, Write | Sonnet |
+| `researcher` | 이번 주 후보 수집 (글로벌·국내·학술 역할별), `sources-<역할>.json` 작성 | WebSearch, WebFetch, Read, Write, Bash | Sonnet |
+| `verifier` | 스크립트가 판정 못 한(needs_agent) 출처 확인 | WebFetch, Read, Write, Edit, Bash | Sonnet |
+| `analyst` | 이슈 선정, 보강 요청 작성, `brief.md` 작성 | Read, Write, Bash, Grep, Glob | Opus |
+| `data-scout` | 장기 자료 수집(`fetch_series.py`), 배경 자료 확보 | WebSearch, WebFetch, Read, Write, Bash | Sonnet |
+| `writer` | 원고 작성, `references.json` 생성, 렌더링 확인, 반려 시 수정 | Read, Write, Edit, Bash, Grep, Glob | Opus |
+| `reviewer` | 독립 검수 (brief 를 읽지 않음, 회차마다 새로 띄움) | Read, Write, Bash, WebFetch, Grep, Glob | Opus |
+| `feedback` | 피드백 수집(`collect_feedback.py`)과 분류 | Read, Write, Bash | Sonnet |
 
 - 전체 흐름은 슬래시 커맨드 `/newsletter [주차]`가 조율합니다. 주차를 생략하면 직전 주를 대상으로 합니다.
 - 각 단계 사이에 `scripts/validate_schema.py`를 실행해 산출물 형식을 검사합니다.
   검사에 실패하면 다음 단계로 넘어가지 않습니다.
 - 재실행 시 `pipeline/<주차>/`에 이미 있는 산출물은 건너뜁니다 (`--from 5`처럼 시작 단계 지정 가능).
+- 판단이 필요 없는 일(역할별 리서치 합치기, 새 호 폴더, 진행 상황, 발행된 주제, PR 본문)은 `scripts/pipeline.py`가 합니다.
+- 단계가 끝날 때마다 `issue/<주차>` 브랜치에 커밋하므로, 중간에 멈춰도 이어서 할 수 있습니다.
 
 ## 4. 실행 방식 (구독 안에서)
 
@@ -404,7 +406,6 @@ editorial/
   style-guide.md
   source-whitelist.yml
   series-registry.yml       장기 연속자료 등록부 (원천, 갱신 주기, 수집 방법)
-  published_topics.json     발행된 주제 이력 (중복 방지)
 pipeline/
   2026-W43/          feedback.md, sources.json, verified.json, brief.md,
                      background.json, background-verified.json, review.json
@@ -458,7 +459,7 @@ _quarto.yml, index.qmd, about.qmd, methodology.qmd(독자용 요약)
 | 장기 자료 오용 | 기준 기간·단위 명시, 수집일·데이터 버전 기록, 차트와 본문 수치 대조 |
 | 출처 표기 누락 (일반 문장과의 경계) | 스타일 가이드의 표기 기준, 검수의 "출처 누락"·"해석 구분" 항목 |
 | 저작권 | 직접 인용 제한, 이미지 미사용, 차트는 공개 데이터로 직접 생성 |
-| 같은 이슈 반복 | `published_topics.json`, 후속 보도는 별도 섹션 |
+| 같은 이슈 반복 | 발행된 주제 목록(`pipeline.py topics`), 후속 보도는 별도 섹션 |
 | 편향 | 분야 균형 기준, 승인 체크리스트, 독자 피드백 |
 | 구독 사용량 초과 | 병렬 수 제한, 장기 자료의 스크립트 처리, 단계별 재시작으로 중복 실행 방지 |
 | 주기 실행 누락 | 월요일 중 PR이 없으면 수동 실행 |

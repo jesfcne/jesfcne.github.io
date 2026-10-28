@@ -44,6 +44,19 @@ cp -r issues/_template issues/2026-W43
 출처는 같은 폴더의 `references.json`(CSL JSON)에 넣고 본문에서 `[@id]`로 인용합니다.
 차트는 `lib/briefplot.py`의 함수로 그립니다.
 
+## 한 호 만들기 (/newsletter)
+
+Claude Code 에서 `/newsletter` 를 실행하면 피드백 수집부터 PR 생성까지 진행합니다.
+에이전트 정의는 `.claude/agents/`, 절차는 `.claude/commands/newsletter.md` 에 있습니다.
+
+```
+/newsletter                 # 직전 주
+/newsletter 2026-W43        # 특정 주
+/newsletter 2026-W43 --from 5   # 집필부터 다시
+```
+
+진행 상황은 `python scripts/pipeline.py status 2026-W43` 로 볼 수 있습니다.
+
 ## 검증 도구
 
 파이프라인 산출물과 각 호의 형식을 검사하는 스크립트가 `scripts/`에 있습니다.

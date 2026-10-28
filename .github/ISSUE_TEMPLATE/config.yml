@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: GitHub 계정 없이 메일로 제보
+    url: mailto:jesfcne+notes@gmail.com
+    about: 계정이 없다면 메일로 보내 주셔도 됩니다.
