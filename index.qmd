@@ -7,7 +7,7 @@ listing:
   type: default
   max-items: 4
   sort: "date desc"
-  fields: [date, title, description]
+  fields: [subtitle, title, description]
   date-format: "YYYY-MM-DD"
 toc: false
 ---

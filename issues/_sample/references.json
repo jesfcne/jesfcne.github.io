@@ -1,0 +1,7 @@
+[
+  {"id": "g-01", "type": "report", "title": "예시 국제기구 연례 보고서", "publisher": "예시 국제기구", "author": [{"literal": "예시 국제기구"}], "issued": {"date-parts": [[2026, 10, 21]]}, "URL": "https://example.org/report", "accessed": {"date-parts": [[2026, 10, 26]]}},
+  {"id": "g-02", "type": "article-newspaper", "title": "예시 통신사 기사 제목", "container-title": "예시 통신", "issued": {"date-parts": [[2026, 10, 22]]}, "URL": "https://example.org/news", "accessed": {"date-parts": [[2026, 10, 26]]}},
+  {"id": "k-01", "type": "webpage", "title": "예시 부처 보도자료 제목", "container-title": "예시 부처", "author": [{"literal": "예시 부처"}], "issued": {"date-parts": [[2026, 10, 23]]}, "URL": "https://example.org/press", "accessed": {"date-parts": [[2026, 10, 26]]}},
+  {"id": "a-01", "type": "article-journal", "title": "An example study of something climatic", "container-title": "Example Journal of Climate", "author": [{"family": "Kim", "given": "A."}, {"family": "Lee", "given": "B."}, {"family": "Park", "given": "C."}], "issued": {"date-parts": [[2026, 10, 20]]}, "DOI": "10.0000/example.0001", "volume": "12", "page": "345-356"},
+  {"id": "s-01", "type": "dataset", "title": "예시 장기 관측 자료", "publisher": "예시 관측 기관", "author": [{"literal": "예시 관측 기관"}], "issued": {"date-parts": [[2026]]}, "version": "v1.0", "URL": "https://example.org/data", "accessed": {"date-parts": [[2026, 10, 26]]}}
+]

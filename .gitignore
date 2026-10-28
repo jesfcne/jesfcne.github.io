@@ -8,6 +8,8 @@ __pycache__/
 
 # 렌더링 산출물. GitHub Actions 가 렌더링해 배포하므로 커밋하지 않는다.
 _site/
+# 견본 호의 실행 결과는 배포와 무관하다.
+_freeze/issues/_sample/
 
 # _freeze/ 는 커밋 대상이다. CI 가 차트 코드를 다시 실행하지 않고
 # 이 결과로 렌더링한다.

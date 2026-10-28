@@ -1,0 +1,239 @@
+/*-- scss:rules --*/
+
+// 뉴스레터 한 호를 이루는 블록들. 색은 팔레트 파일(light/dark.scss)의 변수를 쓴다.
+// 각 블록의 쓰임새는 editorial/style-guide.md 와 issues/_template/index.qmd 에 있다.
+
+// 제목 위 부제: "2026-W44 · 10월 20일 – 10월 26일". filters/issue-header.lua 가 만든다.
+.quarto-title-block .subtitle {
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  color: $muted-color;
+  margin-top: 0.25rem;
+}
+
+// 블록 위에 붙는 작은 라벨. ::: {.part label="왜 중요한가"} 처럼 쓰면
+// pandoc 이 data-label 로 내보내고, 여기서 그 값을 라벨로 그린다.
+[data-label]::before {
+  content: attr(data-label);
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: $accent;
+}
+
+// 세 줄 요약. 첫 화면에서 이번 호 전체를 훑을 수 있게 한다.
+.summary {
+  margin: 0 0 3rem;
+  padding: 1.25rem 1.5rem;
+  background: $card-bg;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  box-shadow: $card-shadow;
+}
+
+.summary ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.summary li {
+  font-weight: 500;
+  color: $heading-color;
+}
+
+// 지역 구분(글로벌·국내 등). 이슈 제목(h3)과 위계가 뚜렷이 갈리도록 굵은 선을 둔다.
+main h2.anchored {
+  padding-top: 1.1rem;
+  border-top: 2px solid $heading-color;
+  border-bottom: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+// 이슈 제목
+main h3.anchored {
+  font-size: 1.3rem;
+  line-height: 1.45;
+  margin-top: 2.5rem;
+}
+
+main h2.anchored + h3.anchored,
+main h2.anchored + section > h3.anchored {
+  margin-top: 1.25rem;
+}
+
+// 이슈 안의 구획. 본문 흐름을 끊지 않도록 여백과 라벨만으로 나눈다.
+.part {
+  margin: 1.5rem 0;
+}
+
+.part > :last-child {
+  margin-bottom: 0;
+}
+
+// 긴 흐름에서 보면: 장기 자료로 이번 주 소식을 맥락에 놓는 상자.
+.longview {
+  margin: 1.75rem 0;
+  padding: 1.1rem 1.25rem;
+  background: $subtle-bg;
+  border-radius: $border-radius;
+}
+
+.longview > :last-child {
+  margin-bottom: 0;
+}
+
+// 더 볼 것: 원문 링크 몇 개. 본문보다 물러나 있게 작게.
+.more {
+  font-size: 0.9rem;
+}
+
+.more ul {
+  padding-left: 1.1rem;
+  margin-bottom: 0;
+}
+
+.more li {
+  line-height: 1.65;
+}
+
+// 이번 주의 연구: 논문·보고서 카드
+.paper {
+  margin: 1.25rem 0;
+  padding: 1.1rem 1.35rem;
+  background: $card-bg;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  box-shadow: $card-shadow;
+}
+
+.paper > :first-child {
+  margin-top: 0;
+}
+
+.paper > :last-child {
+  margin-bottom: 0;
+}
+
+.paper-title {
+  display: block;
+  font-weight: 650;
+  line-height: 1.5;
+  color: $heading-color;
+}
+
+.paper-meta {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.86rem;
+  color: $muted-color;
+}
+
+// 동료심사 전 표시. 색만으로 구분하지 않도록 글자로 적는다.
+.preprint {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid $border-color;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: $muted-color;
+  vertical-align: 0.1em;
+}
+
+// 숫자로 보는 이번 주: 큰 숫자 하나 + 설명 + 차트
+.big-number {
+  display: block;
+  margin: 0.5rem 0 0.25rem;
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: $heading-color;
+}
+
+.big-number-label {
+  display: block;
+  font-size: 0.95rem;
+  color: $muted-color;
+  margin-bottom: 1.25rem;
+}
+
+// 차트 아래 출처 캡션: 원천, 기간, 수집일
+.chart-source {
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: $muted-color;
+}
+
+.chart-source p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+// Plotly 그림 주변 여백
+.cell-output-display .plotly-graph-div {
+  margin: 0.5rem 0 0;
+}
+
+// 후속 보도, 정정
+.followup,
+.correction {
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+}
+
+.correction {
+  border-left: 3px solid $heading-color;
+}
+
+.followup > :last-child,
+.correction > :last-child {
+  margin-bottom: 0;
+}
+
+// 본문 인용 번호(위첨자). 문장을 덜 끊도록 작고 옅게.
+main a[role="doc-biblioref"] {
+  text-decoration: none;
+  font-size: 0.78em;
+  font-variant-numeric: tabular-nums;
+}
+
+main sup a[role="doc-biblioref"] {
+  font-size: 1em;
+}
+
+// 참고문헌 목록
+#refs {
+  font-size: 0.86rem;
+  line-height: 1.65;
+  color: $muted-color;
+}
+
+#refs .csl-entry {
+  margin-bottom: 0.5rem;
+  // 긴 URL 만 아무 데서나 끊고, 한글 어절("2026년")은 쪼개지 않는다.
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+#refs .csl-left-margin {
+  font-variant-numeric: tabular-nums;
+}
+
+// 목록 카드에서 부제(호수·기간)
+.listing-subtitle {
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  color: $muted-color;
+  margin-bottom: 0.35rem;
+}
