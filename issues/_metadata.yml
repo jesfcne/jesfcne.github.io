@@ -13,7 +13,7 @@ comments:
     category: Announcements
     category-id: DIC_kwDOIYqsK84DEPOi
     # 호의 주소로 토론을 짝짓는다. 제목을 고쳐도 댓글이 흩어지지 않는다.
-    # 다만 폴더명(issues/2026-W44 등)을 바꾸면 기존 댓글과 연결이 끊긴다.
+    # 다만 폴더명(issues/2026-W43 등)을 바꾸면 기존 댓글과 연결이 끊긴다.
     mapping: pathname
     reactions-enabled: true
     # 글이 길어서 입력창을 위에 둔다. 끝까지 스크롤하지 않아도 쓸 수 있다.

@@ -35,13 +35,25 @@ quarto render      # _site/ 에 최종 산출물을 만듭니다 (커밋하지 �
 ## 새 호 만들기
 
 ```bash
-cp -r issues/_template issues/2026-W44
+cp -r issues/_template issues/2026-W43
 ```
 
-폴더명은 ISO 주차(`YYYY-Www`)입니다. 작성 규칙은 [`editorial/style-guide.md`](editorial/style-guide.md),
+폴더명은 **대상 주**의 ISO 주차(`YYYY-Www`)입니다. 2026-W43은 10월 19일(월)~25일(일)을
+다루고 10월 26일(월)에 발행합니다. 작성 규칙은 [`editorial/style-guide.md`](editorial/style-guide.md),
 출처 등급은 [`editorial/source-whitelist.yml`](editorial/source-whitelist.yml)을 따릅니다.
 출처는 같은 폴더의 `references.json`(CSL JSON)에 넣고 본문에서 `[@id]`로 인용합니다.
 차트는 `lib/briefplot.py`의 함수로 그립니다.
+
+## 검증 도구
+
+파이프라인 산출물과 각 호의 형식을 검사하는 스크립트가 `scripts/`에 있습니다.
+사용법은 [`pipeline/README.md`](pipeline/README.md)를 보세요. PR을 열면 CI가
+`pytest`, 산출물 형식 검사, 각 호 형식 검사를 렌더링 전에 돌립니다.
+
+```bash
+pytest               # 검증 스크립트 시험 (네트워크 없이)
+pytest -m network    # 실제 Crossref·원문으로 확인하는 시험
+```
 
 ## 디자인 견본
 
@@ -68,7 +80,7 @@ quarto render --profile sample     # .quarto/sample-site/ 에 생성 (커밋하�
 _quarto.yml          사이트 설정 (렌더링 대상, 테마, 필터)
 index.qmd            랜딩 (최근 호)
 about.qmd            소개
-issues/              각 호. 폴더 하나가 한 호 (issues/2026-W44/index.qmd)
+issues/              각 호. 폴더 하나가 한 호 (issues/2026-W43/index.qmd)
   index.qmd          지난 호 목록 + RSS
   _metadata.yml      각 호 공통 설정 (댓글, 출처 양식, 코드 숨김)
   _template/         새 호 템플릿
@@ -77,7 +89,9 @@ editorial/           스타일 가이드, 출처 화이트리스트, 인용 양�
 lib/briefplot.py     차트 공통 스타일 (라이트/다크)
 filters/             호수·기간 부제, 정정 제보 안내
 themes/              SCSS 테마 (newsletter.scss 가 뉴스레터 블록)
-scripts/             보조 스크립트 (OG 카드 생성 등)
+scripts/             검증 스크립트, 스키마(schema/), OG 카드 생성
+pipeline/            주차별 파이프라인 산출물 (감사 기록)
+tests/               검증 스크립트 시험
 .github/workflows/   렌더링·배포
 ```
 

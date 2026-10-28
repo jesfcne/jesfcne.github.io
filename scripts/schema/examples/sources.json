@@ -1,0 +1,52 @@
+{
+  "issue": "2026-W43",
+  "stage": "sources",
+  "items": [
+    {
+      "id": "g-01",
+      "region": "global",
+      "kind": "report",
+      "role": "trigger",
+      "topic": "온실가스 농도",
+      "title": "Example Greenhouse Gas Bulletin",
+      "publisher": "World Meteorological Organization",
+      "url": "https://wmo.int/publication/example-bulletin",
+      "published_at": "2026-10-21",
+      "tier": 1,
+      "quote": "Concentrations of the three main greenhouse gases reached new highs in the example year.",
+      "claims": ["주요 온실가스 3종의 농도가 예시 연도에 최고치를 기록했다"]
+    },
+    {
+      "id": "k-01",
+      "region": "korea",
+      "kind": "official",
+      "role": "trigger",
+      "topic": "배출량",
+      "title": "예시 국가 온실가스 잠정 배출량 공표",
+      "publisher": "온실가스종합정보센터",
+      "url": "https://www.gir.go.kr/example/press",
+      "published_at": "2026-10-23",
+      "tier": 1,
+      "quote": "예시 연도 국가 온실가스 배출량은 전년 대비 감소한 것으로 잠정 집계됐다.",
+      "claims": ["예시 연도 국가 배출량이 전년보다 줄었다(잠정)"]
+    },
+    {
+      "id": "a-01",
+      "region": "global",
+      "kind": "paper",
+      "role": "trigger",
+      "topic": "극한 강수",
+      "title": "An example study of extreme precipitation",
+      "publisher": "Nature Climate Change",
+      "authors": ["Kim, Ara", "Lee, Bora"],
+      "url": "https://www.nature.com/articles/s41558-026-00000-0",
+      "doi": "10.1038/s41558-026-00000-0",
+      "published_at": "2026-10-20",
+      "peer_reviewed": true,
+      "tier": 1,
+      "quote": "We find that the frequency of extreme precipitation events increases in most regions.",
+      "claims": ["대부분 지역에서 극한 강수 빈도가 늘어난다고 분석했다"],
+      "follow_up": false
+    }
+  ]
+}

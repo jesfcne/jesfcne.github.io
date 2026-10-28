@@ -8,6 +8,7 @@ AI 에이전트 여러 개가 리서치, 검증, 분석, 자료 보강, 집필, 
 | 항목 | 결정 |
 | --- | --- |
 | 발행 주기 | **주간** (매주 월요일 발행) |
+| 호 번호 | 대상 주의 ISO 주차. 예: 2026-W43 = 10월 19일(월)~25일(일), 10월 26일(월) 발행 |
 | 이슈 기준 기간 | 전주 월~일에 나온 소식·발표·논문을 **이슈의 계기**로 삼음 |
 | 참고 자료 기간 | **제한 없음**. 맥락 설명에 필요하면 과거 보고서, 논문, 장기 연속자료를 확보해 반영 |
 | 리서치 범위 | 뉴스·공식 발표 + **학술 논문·보고서** |
@@ -56,9 +57,9 @@ AI 에이전트 여러 개가 리서치, 검증, 분석, 자료 보강, 집필, 
 | 1 | 리서치 | `researcher` 에이전트 × 3 (글로벌·국내·학술 분담, 병렬) | 대상 기간, `source-whitelist.yml`, `published_topics.json` | `sources.json` |
 | 2 | 출처 검증 | `verify_sources.py` 스크립트 + `verifier` 에이전트 | `sources.json` | `verified.json` |
 | 3 | 분석·선정 | `analyst` 에이전트 | `verified.json`, `published_topics.json`, `feedback.md` | `brief.md` (보강 요청 포함) |
-| 4 | 자료 보강 | `fetch_series.py` 스크립트 + `data-scout` 에이전트 | `brief.md`의 보강 요청, `series-registry.yml` | `background.json`, `data/series/…` |
-| 5 | 집필 | `writer` 에이전트 | `brief.md`, `verified.json`, `background.json`, `style-guide.md` | `issues/<호>/index.qmd` |
-| 6 | 검수 | `reviewer` 에이전트 (독립 맥락) | `index.qmd`, `verified.json`, `background.json` | `review.json` |
+| 4 | 자료 보강 | `fetch_series.py` 스크립트 + `data-scout` 에이전트, 이어서 `verify_sources.py` | `brief.md`의 보강 요청, `series-registry.yml` | `background.json` → `background-verified.json`, `data/series/…` |
+| 5 | 집필 | `writer` 에이전트, 마무리로 `make_references.py` | `brief.md`, `verified.json`, `background-verified.json`, `style-guide.md` | `issues/<호>/index.qmd`, `references.json` |
+| 6 | 검수 | `reviewer` 에이전트 (독립 맥락) | `index.qmd`, `verified.json`, `background-verified.json` | `review.json` |
 | 7 | PR 생성 | 오케스트레이터 (git 명령) | 위 산출물 전체 | `issue/<호>` 브랜치, PR |
 | 8 | 렌더링·배포 | GitHub Actions | `main` 머지 | Pages 배포 |
 
@@ -120,9 +121,17 @@ AI 에이전트 여러 개가 리서치, 검증, 분석, 자료 보강, 집필, 
 - `role: trigger`인 자료의 `published_at`이 이슈 기준 기간 안에 있는가
 - `tier`가 화이트리스트와 맞는가
 
-스크립트가 판정하지 못한 항목(페이월, PDF, 동적 페이지)만 **`verifier` 에이전트**가
-직접 열어 확인합니다. 그래도 확인되지 않은 항목은 `verified: false`로 남기고
-다음 단계에서 쓰지 않습니다.
+스크립트는 항목마다 세 가지 중 하나로 판정합니다.
+
+| 판정 | 뜻 | 다음 처리 |
+| --- | --- | --- |
+| `verified: true` | 모든 확인 통과 | 다음 단계에서 사용 |
+| `needs_agent: true` | 스크립트가 판정 못 함 (페이월·차단, 동적 페이지, 인용문 근사 일치, tier 불일치, Crossref 조회 실패) | `verifier` 에이전트가 직접 열어 확인하고 `checked_by: agent`로 판정을 고침 |
+| 둘 다 `false` | 확실한 실패 (404, 없는 DOI, 서지 불일치, 인용문 없음, 기간 밖, 차단 출처) | 쓰지 않음 |
+
+논문은 본문이 페이월이어도 Crossref 초록에서 인용문을 확인할 수 있습니다.
+에이전트도 확인하지 못한 항목은 `verified: false`로 남기고 다음 단계에서 쓰지 않습니다.
+검증 결과의 형식은 `scripts/schema/verification.schema.json`에 있습니다.
 
 ### ③ 분석·선정
 
@@ -166,7 +175,11 @@ AI 에이전트 여러 개가 리서치, 검증, 분석, 자료 보강, 집필, 
 
 ### ⑤ 집필
 
-`style-guide.md`를 따릅니다. 핵심 규칙은 다음과 같습니다.
+`style-guide.md`를 따릅니다. 원고를 마치면 `scripts/make_references.py <호>`가
+본문의 `[@id]`를 모아 `references.json`을 만듭니다. **검증을 통과하지 않은 출처를
+인용했으면 만들지 않고 실패**하므로, 원고는 검증된 출처만 인용할 수 있습니다.
+
+핵심 규칙은 다음과 같습니다.
 
 **출처 표기**
 
@@ -230,7 +243,7 @@ AI 에이전트 여러 개가 리서치, 검증, 분석, 자료 보강, 집필, 
 
 ### ⑦ PR 생성과 승인
 
-- 브랜치 `issue/2026-W44`, 커밋 메시지 `뉴스레터 2026-W44 초안`
+- 브랜치 `issue/2026-W43`, 커밋 메시지 `뉴스레터 2026-W43 초안`
 - PR 본문에 넣는 것:
   - 이번 호 이슈 목록과 선정 이유 한 줄씩
   - 사용한 장기 자료와 배경 연구 목록
@@ -307,7 +320,7 @@ AI 에이전트 여러 개가 리서치, 검증, 분석, 자료 보강, 집필, 
 에이전트는 정해진 슬롯만 채웁니다.
 
 ```
-# 기후·환경 주간 브리핑 2026-W44  (10.20 – 10.26)
+# 기후·환경 주간 브리핑 2026-W43  (10.19 – 10.25)
 
 이번 주 세 줄 요약
   - …
@@ -336,7 +349,7 @@ AI 에이전트 여러 개가 리서치, 검증, 분석, 자료 보강, 집필, 
 ```
 
 - "긴 흐름에서 보면"은 ④에서 확보한 장기 자료나 배경 연구가 있는 이슈에만 둡니다.
-- 프론트매터 필수 필드: `title`, `issue` (예: `2026-W44`), `period`, `date`, `topics`, `regions`, `series_used`, `review_rounds`
+- 프론트매터 필수 필드: `title`, `issue` (예: `2026-W43`), `period`, `date`, `topics`, `regions`, `series_used`, `review_rounds`
 - 목록 페이지(`issues/index.qmd`)는 최신 호가 위에 오는 리스트이며, RSS를 제공합니다.
 
 ## 7. 사람의 승인 체크리스트
@@ -379,19 +392,20 @@ editorial/
   series-registry.yml       장기 연속자료 등록부 (원천, 갱신 주기, 수집 방법)
   published_topics.json     발행된 주제 이력 (중복 방지)
 pipeline/
-  2026-W44/          feedback.md, sources.json, verified.json, brief.md,
-                     background.json, review.json
+  2026-W43/          feedback.md, sources.json, verified.json, brief.md,
+                     background.json, background-verified.json, review.json
 data/
   series/<series-id>/       장기 연속자료 원자료와 수집 기록
 issues/
   _template/         새 호 템플릿 (렌더링 제외)
-  2026-W44/index.qmd
+  2026-W43/index.qmd
   index.qmd          목록 + RSS
 scripts/
   verify_sources.py         URL·DOI·인용문·기간 검증
   fetch_series.py           레지스트리 자료 수집
-  validate_schema.py
-  check_frontmatter.py      각 호 프론트매터 검증 (새로 작성)
+  validate_schema.py        산출물 형식 검사 (스키마: scripts/schema/)
+  make_references.py        인용한 출처로 references.json 생성 (검증된 출처만 허용)
+  check_frontmatter.py      각 호 형식 검사 (CI에서도 실행)
 .github/
   workflows/deploy.yml      main 머지 시 렌더링·배포
   ISSUE_TEMPLATE/correction.yml
