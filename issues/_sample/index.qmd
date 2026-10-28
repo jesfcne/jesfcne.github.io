@@ -1,6 +1,6 @@
 ---
 # 디자인 견본. 실제 호가 아니며 사이트에 올라가지 않는다(_ 로 시작하는 폴더).
-# 문구, 출처, 데이터는 모두 임의로 만든 자리 채움이다.
+# 문구와 출처는 임의로 만든 자리 채움이다. 차트만 실제 장기 자료(data/series/)를 쓴다.
 # 미리보기: quarto preview issues/_sample/index.qmd
 title: "[견본] 예시 국제기구 “지난해 지표, 관측 이래 최고”"
 description: "목록 카드와 링크 미리보기에 나오는 한두 문장 요약이 이 자리에 들어간다."
@@ -21,7 +21,7 @@ bibliography: references.json
 import sys
 sys.path.insert(0, "../../lib")
 import pandas as pd
-from briefplot import line, anomaly_bars, show
+from briefplot import line, anomaly_bars, show, load_series, caption
 ```
 
 ::: {.summary label="이번 주 세 줄 요약"}
@@ -89,28 +89,32 @@ from briefplot import line, anomaly_bars, show
 
 ## 숫자로 보는 이번 주
 
-[+1.23℃]{.big-number}
-[예시 지표의 지난해 값, 기준 기간 대비 편차 (임의 데이터)]{.big-number-label}
+```{python}
+co2, co2_meta = load_series("co2-mlo-annual")
+temp, temp_meta = load_series("era5-global-annual")
+```
+
+[`{python} f"{temp.anomaly.iloc[-1]:+.2f}℃"`]{.big-number}
+[`{python} int(temp.year.iloc[-1])`년 전 지구 평균 기온, 1991~2020년 평균 대비 (ERA5)]{.big-number-label}
 
 ```{python}
 #| renderings: [light, dark]
-#| fig-alt: "1960년부터 2025년까지 예시 지표가 꾸준히 오른 선 그래프. 임의로 만든 데이터다."
-df = pd.read_csv("example-series.csv")
-show(lambda theme: line(df, "year", "value", unit="ppm", theme=theme))
+#| fig-alt: "1940년 이후 전 지구 연평균 기온의 1991~2020년 평균 대비 편차. 1980년대까지는 대부분 음수였고 이후 양수가 늘어 최근이 가장 높다."
+show(lambda theme: anomaly_bars(temp, "year", "anomaly", unit="℃, 1991–2020년 평균 대비", theme=theme))
 ```
 
 ::: {.chart-source}
-자료: 예시 관측 기관, 예시 장기 관측 자료(v1.0). 기간 1960–2025. 2026년 10월 26일 수집. **견본용 임의 데이터.**
+`{python} caption(temp_meta)`
 :::
 
 ```{python}
 #| renderings: [light, dark]
-#| fig-alt: "1960년부터 2025년까지 기준 기간 대비 편차를 막대로 나타낸 그래프. 초기에는 음수, 최근에는 양수가 많다. 임의로 만든 데이터다."
-show(lambda theme: anomaly_bars(df, "year", "anomaly", unit="℃, 1991–2020년 평균 대비", theme=theme))
+#| fig-alt: "1959년 이후 마우나로아 관측소의 대기 중 이산화탄소 연평균 농도. 해마다 꾸준히 올랐다."
+show(lambda theme: line(co2, "year", "value", unit="ppm", theme=theme))
 ```
 
 ::: {.chart-source}
-편차 막대 견본. 기준선보다 높으면 붉은색, 낮으면 푸른색. **견본용 임의 데이터.**
+`{python} caption(co2_meta)`
 :::
 
 ## 후속 보도

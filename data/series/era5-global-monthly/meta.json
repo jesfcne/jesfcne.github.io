@@ -1,0 +1,22 @@
+{
+  "id": "era5-global-monthly",
+  "title": "ERA5 전 지구 평균 지표(2m) 기온 (월평균)",
+  "publisher": "Copernicus Climate Change Service (C3S) / ECMWF",
+  "landing_url": "https://pulse.climate.copernicus.eu/",
+  "download_url": "https://sites.ecmwf.int/data/climatepulse/data/series/era5_daily_series_2t_global.csv",
+  "retrieved_at": "2026-10-28",
+  "raw_sha256": "833e3b8175940884e8360c5363bba990e9694a255cb2e736ca5deb5e9ffef954",
+  "raw_bytes": 1198558,
+  "rows": 1041,
+  "first": "1940-01",
+  "last": "2026-09",
+  "unit": "℃",
+  "baseline": "1991–2020",
+  "columns": {
+    "year": "연도",
+    "month": "월",
+    "value": "월평균 기온",
+    "anomaly": "기온 편차",
+    "preliminary": "잠정값 포함 여부"
+  }
+}

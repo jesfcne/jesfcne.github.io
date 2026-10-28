@@ -29,7 +29,7 @@ bibliography: references.json
 import sys
 sys.path.insert(0, "../../lib")
 import pandas as pd
-from briefplot import line, anomaly_bars, show
+from briefplot import line, anomaly_bars, show, load_series, caption
 ```
 
 ::: {.summary label="이번 주 세 줄 요약"}
@@ -84,18 +84,23 @@ from briefplot import line, anomaly_bars, show
 
 ## 숫자로 보는 이번 주
 
-[0.00℃]{.big-number}
+```{python}
+# 장기 자료는 data/series/<id>/ 에서 읽는다 (editorial/series-registry.yml 의 id).
+df, meta = load_series("<series-id>")
+```
+
+<!-- 큰 숫자는 차트와 같은 자료에서 계산한다. 본문 수치와 차트가 어긋나지 않게. -->
+[`{python} f"{df.value.iloc[-1]:.1f}"` 단위]{.big-number}
 [이 숫자가 무엇인지 한 줄로 (기준 기간 포함)]{.big-number-label}
 
 ```{python}
 #| renderings: [light, dark]
 #| fig-alt: "차트가 보여 주는 내용을 한 문장으로 쓴다."
-df = pd.read_csv("../../data/series/<series-id>/data.csv")
-show(lambda theme: line(df, "year", "value", unit="단위", theme=theme))
+show(lambda theme: line(df, "year", "value", unit=meta["unit"], theme=theme))
 ```
 
 ::: {.chart-source}
-자료: 원천 기관, 데이터셋 이름(버전). 기간 1979–2026. 2026년 10월 26일 수집.
+`{python} caption(meta)`
 :::
 
 ## 후속 보도

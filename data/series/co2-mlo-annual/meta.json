@@ -1,0 +1,20 @@
+{
+  "id": "co2-mlo-annual",
+  "title": "마우나로아 관측소 대기 중 이산화탄소 농도 (연평균)",
+  "publisher": "NOAA Global Monitoring Laboratory",
+  "landing_url": "https://gml.noaa.gov/ccgg/trends/data.html",
+  "download_url": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.csv",
+  "retrieved_at": "2026-10-28",
+  "raw_sha256": "bdd956e8d7e05ebc3c61ac1f8f8c8cea4a505df56724fba5200b4eb1e0089b2b",
+  "raw_bytes": 3134,
+  "rows": 67,
+  "first": "1959",
+  "last": "2025",
+  "unit": "ppm",
+  "baseline": null,
+  "columns": {
+    "year": "연도",
+    "value": "연평균 농도",
+    "unc": "불확도"
+  }
+}

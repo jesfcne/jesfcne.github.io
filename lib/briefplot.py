@@ -16,9 +16,15 @@
 
 from __future__ import annotations
 
+import json
+from datetime import date
+from pathlib import Path
 from typing import Callable
 
+import pandas as pd
 import plotly.graph_objects as go
+
+SERIES_DIR = Path(__file__).resolve().parent.parent / "data" / "series"
 
 FONT = '"Pretendard Variable", Pretendard, -apple-system, "Segoe UI", "Malgun Gothic", sans-serif'
 
@@ -175,6 +181,21 @@ def anomaly_bars(
     fig.update_layout(bargap=0.15)
     fig.add_hline(y=0, line=dict(color=t["baseline"], width=1))
     return _layout(fig, t, unit=unit, height=height)
+
+
+def load_series(series_id: str) -> tuple[pd.DataFrame, dict]:
+    """data/series/<id>/ 의 표와 수집 기록. scripts/fetch_series.py 가 만든다."""
+    d = SERIES_DIR / series_id
+    return pd.read_csv(d / "data.csv"), json.loads((d / "meta.json").read_text(encoding="utf-8"))
+
+
+def caption(meta: dict) -> str:
+    """차트 아래 출처 캡션. 스타일 가이드 8절 형식."""
+    got = date.fromisoformat(meta["retrieved_at"])
+    text = f"자료: {meta['publisher']}, {meta['title']}. 기간 {meta['first']}–{meta['last']}."
+    if meta.get("baseline"):
+        text += f" 편차 기준 {meta['baseline']}년 평균."
+    return text + f" {got.year}년 {got.month}월 {got.day}일 수집."
 
 
 def show(make: Callable[[str], go.Figure]) -> None:

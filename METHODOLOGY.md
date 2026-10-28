@@ -160,7 +160,21 @@ AI 에이전트 여러 개가 리서치, 검증, 분석, 자료 보강, 집필, 
 - **등록되지 않은 자료와 배경 연구**: `data-scout` 에이전트가 찾아 `background.json`에
   같은 스키마(`role: background | series`)로 기록하고, ②와 같은 검증 스크립트를 통과시킵니다.
   자주 쓰이는 자료는 이후 레지스트리 등록을 제안합니다.
-- 장기 연속자료 예시 (레지스트리 초기 후보):
+- **현재 등록된 자료** (`editorial/series-registry.yml`, 2026년 10월 기준):
+
+| id | 자료 | 원천 | 기간 |
+| --- | --- | --- | --- |
+| `co2-mlo-annual` | 대기 중 CO₂ 연평균 | NOAA GML 마우나로아 | 1959– |
+| `co2-amy-monthly` | 안면도 대기 중 CO₂ 월평균 (플라스크) | NOAA GML · 기상청 안면도 | 2013– |
+| `gistemp-global-annual` | 전 지구 기온 편차 (1951–1980 기준) | NASA GISTEMP | 1880– |
+| `era5-global-monthly` / `-annual` | 전 지구 기온·편차 (1991–2020 기준) | Copernicus C3S ERA5 | 1940– |
+| `nsidc-arctic-sept` | 북극 9월 해빙 면적 | NSIDC Sea Ice Index v4 | 1979– |
+
+  수집한 자료는 `--add-to pipeline/<호>/background.json --id s-01` 로 출처 항목(role: series)이
+  되고, 출처 검증을 거쳐 원고에서 인용할 수 있습니다.
+  레지스트리의 `quote`가 원파일에 없으면 원천 형식이 바뀐 것으로 보고 수집을 실패로 처리합니다.
+
+- 앞으로 등록할 후보:
 
 | 분야 | 자료 | 원천 |
 | --- | --- | --- |

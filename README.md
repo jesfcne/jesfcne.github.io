@@ -55,9 +55,21 @@ pytest               # 검증 스크립트 시험 (네트워크 없이)
 pytest -m network    # 실제 Crossref·원문으로 확인하는 시험
 ```
 
+## 장기 연속자료
+
+`editorial/series-registry.yml`에 등록한 자료를 `data/series/<id>/`로 내려받습니다.
+정리된 표(`data.csv`)와 수집 기록(`meta.json`)은 커밋하고, 원파일은 커밋하지 않습니다.
+
+```bash
+python scripts/fetch_series.py            # 전부 (이번 주에 받은 것은 건너뜀)
+python scripts/fetch_series.py --force    # 다시 받기
+```
+
+각 호에서는 `load_series("co2-mlo-annual")`로 읽고, 캡션은 `caption(meta)`로 만듭니다.
+
 ## 디자인 견본
 
-`issues/_sample/`은 모든 블록을 한 번씩 써 본 견본 호입니다(문구·데이터는 임의).
+`issues/_sample/`은 모든 블록을 한 번씩 써 본 견본 호입니다(문구·출처는 임의, 차트는 실제 장기 자료).
 사이트에는 올라가지 않고, 견본 프로파일로만 렌더링됩니다.
 
 ```bash
@@ -91,6 +103,7 @@ filters/             호수·기간 부제, 정정 제보 안내
 themes/              SCSS 테마 (newsletter.scss 가 뉴스레터 블록)
 scripts/             검증 스크립트, 스키마(schema/), OG 카드 생성
 pipeline/            주차별 파이프라인 산출물 (감사 기록)
+data/series/         장기 연속자료 (fetch_series.py 가 생성)
 tests/               검증 스크립트 시험
 .github/workflows/   렌더링·배포
 ```

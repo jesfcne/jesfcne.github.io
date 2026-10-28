@@ -1,0 +1,20 @@
+{
+  "id": "co2-amy-monthly",
+  "title": "안면도 대기 중 이산화탄소 농도 (월평균, 플라스크 시료)",
+  "publisher": "NOAA Global Monitoring Laboratory (기상청 안면도 기후변화감시소 협력 관측)",
+  "landing_url": "https://gml.noaa.gov/dv/site/?stacode=AMY",
+  "download_url": "https://gml.noaa.gov/aftp/data/trace_gases/co2/flask/surface/txt/co2_amy_surface-flask_1_ccgg_month.txt",
+  "retrieved_at": "2026-10-28",
+  "raw_sha256": "c05554dbee07a09c8d42ffad90c9d051a3f61d3c6f0269b0f71c980b1e4bbc49",
+  "raw_bytes": 5050,
+  "rows": 125,
+  "first": "2013-12",
+  "last": "2025-12",
+  "unit": "ppm",
+  "baseline": null,
+  "columns": {
+    "year": "연도",
+    "month": "월",
+    "value": "월평균 농도"
+  }
+}
