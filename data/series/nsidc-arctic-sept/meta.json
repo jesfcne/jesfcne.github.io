@@ -1,0 +1,20 @@
+{
+  "id": "nsidc-arctic-sept",
+  "title": "북극 해빙 면적 (9월 평균, Sea Ice Index v4)",
+  "publisher": "National Snow and Ice Data Center (NSIDC)",
+  "landing_url": "https://nsidc.org/data/g02135/versions/4",
+  "download_url": "https://noaadata.apps.nsidc.org/NOAA/G02135/north/monthly/data/N_09_extent_v4.0.csv",
+  "retrieved_at": "2026-10-28",
+  "raw_sha256": "3968dfdbe73b8361712da9136cfeff6dbc9a6d87ab3e75daa30cc254615eab1f",
+  "raw_bytes": 2352,
+  "rows": 48,
+  "first": "1979",
+  "last": "2026",
+  "unit": "백만 km²",
+  "baseline": null,
+  "columns": {
+    "year": "연도",
+    "value": "해빙 범위(extent)",
+    "area": "해빙 면적(area)"
+  }
+}

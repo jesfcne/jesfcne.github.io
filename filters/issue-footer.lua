@@ -34,11 +34,11 @@ function Pandoc(doc)
   local subject = urlencode("[기후·환경 주간 브리핑] " .. title)
 
   local html = string.format(
-    '<aside class="note-correction">'
+    '<div class="issue-correction">'
       .. "<p>사실관계 오류를 발견하셨다면 알려 주세요. "
       .. "아래 댓글은 GitHub 계정이 있어야 쓸 수 있습니다. "
       .. '계정이 없다면 <a href="mailto:%s?subject=%s">%s</a> 로 주셔도 됩니다.</p>'
-      .. "</aside>",
+      .. "</div>",
     escape(EMAIL),
     subject,
     escape(EMAIL)

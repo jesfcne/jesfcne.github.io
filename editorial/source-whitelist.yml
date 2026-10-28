@@ -1,0 +1,122 @@
+# 출처 화이트리스트
+#
+# 리서치 에이전트는 이 목록의 출처를 우선으로 쓰고, 검증 스크립트는 출처의
+# tier 를 이 목록과 대조한다. 기준은 METHODOLOGY.md 5절과 같다.
+#
+#   tier 1  1차 자료: 공식 관측·통계·발표, 동료심사 논문, 국제기구 평가 보고서
+#   tier 2  전문 매체, 연구기관 보고서, 프리프린트(동료심사 전 표시 필수)
+#   tier 3  일반 언론 (사실 확인된 보도)
+#   tier 0  목록 밖. 단독 근거로 쓰지 않는다.
+#
+# 규칙
+#   - 이슈마다 tier 1 또는 2 출처를 최소 1개 포함한다.
+#   - tier 3 만으로 구성된 이슈는 호당 최대 1개, 본문에 "보도에 따르면"을 쓴다.
+#   - 도메인은 하위 도메인까지 포함한다 (wmo.int 는 public.wmo.int 도 포함).
+#   - 한 도메인이 여러 성격을 가지면(예: nature.com 의 논문과 뉴스) paths 로 나눈다.
+#   - 이 파일은 PR 로만 바꾼다.
+
+tiers:
+  1:
+    international:
+      - { name: IPCC, domains: [ipcc.ch] }
+      - { name: WMO, domains: [wmo.int] }
+      - { name: UNFCCC, domains: [unfccc.int] }
+      - { name: UNEP, domains: [unep.org] }
+      - { name: IEA, domains: [iea.org] }
+      - { name: IRENA, domains: [irena.org] }
+      - { name: FAO, domains: [fao.org] }
+      - { name: WHO, domains: [who.int] }
+      - { name: World Bank, domains: [worldbank.org] }
+      - { name: Copernicus (C3S, CAMS), domains: [copernicus.eu, climate.copernicus.eu, atmosphere.copernicus.eu] }
+      - { name: ECMWF, domains: [ecmwf.int] }
+      - { name: NOAA, domains: [noaa.gov] }
+      - { name: NASA, domains: [nasa.gov] }
+      - { name: NSIDC, domains: [nsidc.org] }
+      - { name: UK Met Office, domains: [metoffice.gov.uk] }
+      - { name: European Environment Agency, domains: [eea.europa.eu] }
+      - { name: Japan Meteorological Agency, domains: [jma.go.jp] }
+    korea:
+      - { name: 기상청, domains: [kma.go.kr, data.kma.go.kr] }
+      - { name: 기후에너지환경부, domains: [me.go.kr] }
+      - { name: 온실가스종합정보센터, domains: [gir.go.kr] }
+      - { name: 국립환경과학원, domains: [nier.go.kr] }
+      - { name: 에어코리아(한국환경공단), domains: [airkorea.or.kr, keco.or.kr] }
+      - { name: 국립기상과학원, domains: [nims.go.kr] }
+      - { name: 국립해양조사원, domains: [khoa.go.kr] }
+      - { name: 산업통상자원부, domains: [motie.go.kr] }
+      - { name: 국회, domains: [assembly.go.kr] }
+      - { name: 법제처 국가법령정보센터, domains: [law.go.kr] }
+      - { name: 대한민국 정책브리핑, domains: [korea.kr] }
+      - { name: 통계청 KOSIS, domains: [kosis.kr] }
+      - { name: 한국전력 전력통계, domains: [kepco.co.kr, epsis.kpx.or.kr] }
+    journals:
+      # 동료심사 학술지. 논문 원문(DOI)일 때만 tier 1. 같은 사이트의 뉴스·논평은 tier 2.
+      - { name: Nature 계열, domains: [nature.com], paths: [/articles/s4], note: "/articles/d41586 (뉴스)는 tier 2" }
+      - { name: Science 계열, domains: [science.org], paths: [/doi/10.1126] }
+      - { name: PNAS, domains: [pnas.org] }
+      - { name: AGU 학술지, domains: [agupubs.onlinelibrary.wiley.com] }
+      - { name: AMS 학술지, domains: [journals.ametsoc.org] }
+      - { name: EGU 학술지(Copernicus Publications), domains: [copernicus.org] }
+      - { name: The Lancet 계열, domains: [thelancet.com] }
+      - { name: IOP (Environmental Research Letters 등), domains: [iopscience.iop.org] }
+      - { name: Cell Press (One Earth 등), domains: [cell.com] }
+      - { name: Elsevier ScienceDirect, domains: [sciencedirect.com], note: "학술지별로 확인. 약탈적 학술지 아님을 확인" }
+      - { name: Springer, domains: [link.springer.com] }
+      - { name: Wiley, domains: [onlinelibrary.wiley.com] }
+      - { name: 한국기상학회지 등 국내 학술지, domains: [kci.go.kr], note: "KCI 등재지만" }
+
+  2:
+    media:
+      - { name: Carbon Brief, domains: [carbonbrief.org] }
+      - { name: Climate Home News, domains: [climatechangenews.com] }
+      - { name: Inside Climate News, domains: [insideclimatenews.org] }
+      - { name: Nature 뉴스, domains: [nature.com], paths: [/articles/d41586] }
+      - { name: Science 뉴스, domains: [science.org], paths: [/content/article] }
+      - { name: Yale Climate Connections, domains: [yaleclimateconnections.org] }
+    research:
+      - { name: Ember, domains: [ember-energy.org] }
+      - { name: Global Carbon Project, domains: [globalcarbonproject.org, globalcarbonbudget.org] }
+      - { name: Lancet Countdown, domains: [lancetcountdown.org] }
+      - { name: Climate Action Tracker, domains: [climateactiontracker.org] }
+      - { name: World Weather Attribution, domains: [worldweatherattribution.org] }
+      - { name: Berkeley Earth, domains: [berkeleyearth.org] }
+      - { name: Our World in Data, domains: [ourworldindata.org], note: "가공 자료. 가능하면 원 출처를 찾아 함께 인용" }
+      - { name: 한국환경연구원, domains: [kei.re.kr] }
+      - { name: 에너지경제연구원, domains: [keei.re.kr] }
+      - { name: 한국개발연구원, domains: [kdi.re.kr] }
+      - { name: 국회입법조사처 보고서, domains: [nars.go.kr] }
+    preprints:
+      # 반드시 peer_reviewed: false, kind: preprint 로 기록하고 본문에 "동료심사 전"을 밝힌다.
+      - { name: EarthArXiv, domains: [eartharxiv.org] }
+      - { name: ESS Open Archive, domains: [essopenarchive.org] }
+      - { name: EGUsphere, domains: [egusphere.copernicus.org] }
+      - { name: arXiv (physics.ao-ph 등), domains: [arxiv.org] }
+      - { name: Research Square, domains: [researchsquare.com] }
+
+  3:
+    international:
+      - { name: Reuters, domains: [reuters.com] }
+      - { name: AP, domains: [apnews.com] }
+      - { name: AFP, domains: [afp.com] }
+      - { name: BBC, domains: [bbc.com, bbc.co.uk] }
+      - { name: The Guardian, domains: [theguardian.com] }
+      - { name: The New York Times, domains: [nytimes.com] }
+      - { name: Financial Times, domains: [ft.com] }
+      - { name: Bloomberg, domains: [bloomberg.com] }
+    korea:
+      - { name: 연합뉴스, domains: [yna.co.kr] }
+      - { name: KBS, domains: [kbs.co.kr] }
+      - { name: MBC, domains: [imbc.com] }
+      - { name: SBS, domains: [sbs.co.kr] }
+      - { name: 경향신문, domains: [khan.co.kr] }
+      - { name: 한겨레, domains: [hani.co.kr] }
+      - { name: 조선일보, domains: [chosun.com] }
+      - { name: 중앙일보, domains: [joongang.co.kr] }
+      - { name: 동아일보, domains: [donga.com] }
+      - { name: 한국일보, domains: [hankookilbo.com] }
+      - { name: 뉴스펭귄, domains: [newspenguin.com] }
+      - { name: 그리니엄, domains: [greenium.kr] }
+
+# 쓰지 않는 출처. 약탈적 학술지, 콘텐츠 농장, 출처 불명 집계 사이트 등.
+# 발견할 때마다 이유와 함께 추가한다.
+blocked: []

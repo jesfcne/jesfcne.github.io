@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "review",
+  "title": "검수 결과 (review.json)",
+  "type": "object",
+  "required": ["issue", "round", "verdict", "issues"],
+  "additionalProperties": false,
+  "properties": {
+    "issue": {"type": "string", "pattern": "^\\d{4}-W\\d{2}$"},
+    "round": {"type": "integer", "minimum": 1, "maximum": 3},
+    "verdict": {"enum": ["pass", "revise"]},
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["location", "check", "detail", "fix"],
+        "additionalProperties": false,
+        "properties": {
+          "location": {"type": "string", "minLength": 1},
+          "check": {"enum": ["출처 누락", "출처 일치", "해석 구분", "수치", "학술 자료", "과장", "저작권", "형식"]},
+          "detail": {"type": "string", "minLength": 1},
+          "fix": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "if": {"properties": {"verdict": {"const": "pass"}}},
+  "then": {"properties": {"issues": {"maxItems": 0}}},
+  "else": {"properties": {"issues": {"minItems": 1}}}
+}

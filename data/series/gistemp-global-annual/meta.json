@@ -1,0 +1,19 @@
+{
+  "id": "gistemp-global-annual",
+  "title": "NASA GISTEMP 전 지구 지표 기온 편차 (연평균)",
+  "publisher": "NASA Goddard Institute for Space Studies",
+  "landing_url": "https://data.giss.nasa.gov/gistemp/",
+  "download_url": "https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv",
+  "retrieved_at": "2026-10-28",
+  "raw_sha256": "4c64eda288bce32b8d76926278f346ecea1e53506df8ee72a3d5accb0657c416",
+  "raw_bytes": 12886,
+  "rows": 146,
+  "first": "1880",
+  "last": "2025",
+  "unit": "℃",
+  "baseline": "1951–1980",
+  "columns": {
+    "year": "연도",
+    "anomaly": "기온 편차"
+  }
+}

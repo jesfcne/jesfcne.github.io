@@ -1,0 +1,10 @@
+# 디자인 견본(issues/_sample/)을 사이트 테마로 렌더링하는 프로파일.
+#   quarto render --profile sample
+# 결과는 .quarto/sample-site/ 에 생기며 배포되지 않는다. (Quarto 작업 폴더 안이라
+# 본 사이트 렌더링에 복사되지 않는다)
+project:
+  output-dir: .quarto/sample-site
+  render:
+    - "*.qmd"
+    - "issues/**/*.qmd"
+    - "issues/_sample/index.qmd"

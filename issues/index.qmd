@@ -5,7 +5,7 @@ listing:
   contents: "*/index.qmd"
   type: default
   sort: "date desc"
-  fields: [date, title, description]
+  fields: [subtitle, title, description]
   date-format: "YYYY-MM-DD"
   feed: true
 comments: false

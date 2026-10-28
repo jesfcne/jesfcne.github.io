@@ -1,0 +1,114 @@
+# 장기 연속자료 등록부
+#
+# 여기 등록한 자료는 scripts/fetch_series.py 가 내려받아 data/series/<id>/ 에
+# 정리된 표(data.csv)와 수집 기록(meta.json)으로 남긴다. 각 호의 차트와
+# "긴 흐름에서 보면"은 이 표를 읽는다. 기준은 METHODOLOGY.md ④ 단계와 같다.
+#
+# 항목
+#   title        자료 이름 (차트 캡션과 출처 목록에 쓴다)
+#   publisher    발행 기관
+#   landing_url  사람이 읽는 자료 소개 페이지
+#   download_url 실제로 내려받는 파일
+#   parser       fetch_series.py 안의 정리 함수 이름
+#   frequency    annual | monthly
+#   columns      data.csv 의 열과 뜻
+#   unit         값의 단위
+#   baseline     편차의 기준 기간 (편차 자료만)
+#   region       global | korea
+#   update       원천의 갱신 주기 (사람이 읽는 설명)
+#   quote        원천 파일에 실제로 있는 문장. 출처 검증(verify_sources.py)이 이 문장을 찾는다
+#   notes        쓸 때 주의할 점
+#
+# 새 자료를 등록할 때는 PR 로 하고, tests/test_series.py 의 네트워크 시험이 통과하는지 본다.
+
+series:
+  co2-mlo-annual:
+    title: 마우나로아 관측소 대기 중 이산화탄소 농도 (연평균)
+    publisher: NOAA Global Monitoring Laboratory
+    landing_url: https://gml.noaa.gov/ccgg/trends/data.html
+    download_url: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.csv
+    parser: noaa_co2_annual
+    frequency: annual
+    columns: {year: 연도, value: 연평균 농도, unc: 불확도}
+    unit: ppm
+    region: global
+    update: 매년 초 전년 값 추가, 최근 값은 재보정으로 소폭 바뀔 수 있음
+    quote: CO2 expressed as a mole fraction in dry air, micromol/mol, abbreviated as ppm
+    notes: 1958~1974년은 Scripps 연구소 자료. 단일 관측소 값이며 전 지구 평균과는 다르다.
+
+  co2-amy-monthly:
+    title: 안면도 대기 중 이산화탄소 농도 (월평균, 플라스크 시료)
+    publisher: NOAA Global Monitoring Laboratory (기상청 안면도 기후변화감시소 협력 관측)
+    landing_url: https://gml.noaa.gov/dv/site/?stacode=AMY
+    download_url: https://gml.noaa.gov/aftp/data/trace_gases/co2/flask/surface/txt/co2_amy_surface-flask_1_ccgg_month.txt
+    parser: noaa_flask_monthly
+    frequency: monthly
+    columns: {year: 연도, month: 월, value: 월평균 농도}
+    unit: ppm
+    region: korea
+    update: 수개월 지연되어 갱신
+    quote: "description_site-code: amy"
+    notes: 2013년 12월부터. 주 1회 채집한 플라스크 시료의 월평균이라 기상청 연속 관측값과 다를 수 있다.
+      국내 공식 수치가 필요하면 기상청 기후변화감시 자료를 함께 확인한다.
+
+  gistemp-global-annual:
+    title: NASA GISTEMP 전 지구 지표 기온 편차 (연평균)
+    publisher: NASA Goddard Institute for Space Studies
+    landing_url: https://data.giss.nasa.gov/gistemp/
+    download_url: https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv
+    parser: gistemp_annual
+    frequency: annual
+    columns: {year: 연도, anomaly: 기온 편차}
+    unit: ℃
+    baseline: 1951–1980
+    region: global
+    update: 매월 중순 전월 값 추가
+    quote: "Land-Ocean: Global Means"
+    notes: 기준 기간이 1951~1980년이다. ERA5(1991~2020년 기준)와 편차를 직접 비교하지 않는다.
+      산업화 이전 대비 값이 필요하면 출처가 제시한 환산값을 쓴다.
+
+  era5-global-monthly:
+    title: ERA5 전 지구 평균 지표(2m) 기온 (월평균)
+    publisher: Copernicus Climate Change Service (C3S) / ECMWF
+    landing_url: https://pulse.climate.copernicus.eu/
+    download_url: https://sites.ecmwf.int/data/climatepulse/data/series/era5_daily_series_2t_global.csv
+    parser: era5_monthly
+    frequency: monthly
+    columns: {year: 연도, month: 월, value: 월평균 기온, anomaly: 기온 편차, preliminary: 잠정값 포함 여부}
+    unit: ℃
+    baseline: 1991–2020
+    region: global
+    update: 매일 (5일 지연, 최근 며칠은 잠정값)
+    quote: This file contains daily global mean near-surface (2m) air temperature
+    notes: 일별 자료를 월평균으로 낸 값이다. 한 달이 다 차지 않은 마지막 달은 넣지 않는다.
+      잠정값(PRELIMINARY)이 하루라도 섞인 달은 preliminary 가 true 다.
+
+  era5-global-annual:
+    title: ERA5 전 지구 평균 지표(2m) 기온 (연평균)
+    publisher: Copernicus Climate Change Service (C3S) / ECMWF
+    landing_url: https://pulse.climate.copernicus.eu/
+    download_url: https://sites.ecmwf.int/data/climatepulse/data/series/era5_daily_series_2t_global.csv
+    parser: era5_annual
+    frequency: annual
+    columns: {year: 연도, value: 연평균 기온, anomaly: 기온 편차}
+    unit: ℃
+    baseline: 1991–2020
+    region: global
+    update: 매일 (연평균은 해가 끝난 뒤 확정)
+    quote: This file contains daily global mean near-surface (2m) air temperature
+    notes: 한 해가 다 차지 않은 마지막 해는 넣지 않는다.
+
+  nsidc-arctic-sept:
+    title: 북극 해빙 면적 (9월 평균, Sea Ice Index v4)
+    publisher: National Snow and Ice Data Center (NSIDC)
+    landing_url: https://nsidc.org/data/g02135/versions/4
+    download_url: https://noaadata.apps.nsidc.org/NOAA/G02135/north/monthly/data/N_09_extent_v4.0.csv
+    parser: nsidc_monthly
+    frequency: annual
+    columns: {year: 연도, value: 해빙 범위(extent), area: 해빙 면적(area)}
+    unit: 백만 km²
+    region: global
+    update: 매년 10월 초 9월 값 추가
+    quote: year, mo,source_dataset, region, extent, area
+    notes: 9월은 북극 해빙이 가장 작아지는 달이다. extent 는 해빙 농도 15% 이상인 격자의 넓이 합, area 는 실제 얼음 넓이.
+      버전이 바뀌면(v4 → v5) 주소가 바뀌므로 레지스트리를 고친다.

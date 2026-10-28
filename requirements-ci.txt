@@ -1,0 +1,7 @@
+# CI 점검에 필요한 최소 패키지. 차트 실행(jupyter, plotly)은 로컬에서만 한다.
+pyyaml
+jsonschema
+requests
+beautifulsoup4
+pypdf
+pytest
